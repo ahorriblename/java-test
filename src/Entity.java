@@ -24,16 +24,14 @@ public class Entity {
         this.health = 100;
         this.speed = 5;
         this.strength = 5;
-        this.damage = 5;
         this.stamina = 5;
         this.armor = 5;
     }
 
-    Entity(int health, int speed, int strength, int damage, int stamina, int armor){
+    Entity(int health, int speed, int strength, int stamina, int armor){
         this.health = health;
         this.speed = speed;
         this.strength = strength;
-        this.damage = damage;
         this.stamina = stamina;
         this.armor = armor;
     }
@@ -57,10 +55,6 @@ public class Entity {
     }
     void setStrength(int strength){
         this.strength = strength;
-    }
-
-    int getDamage(){
-        return this.damage;
     }
 
     int getStamina(){
