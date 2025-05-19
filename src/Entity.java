@@ -70,4 +70,10 @@ public class Entity {
     void setArmor(int armor) {
         this.armor = armor;
     }
+
+    int getDamage(){
+        return this.damage;
+    }
+    void takeDamage(int damage){}
+    void dealDamage(int damage){}
 }
