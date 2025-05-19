@@ -41,7 +41,6 @@ public class Entity {
     int getHealth(){
         return this.health;
     }
-
     void setHealth(int health){
         this.health = health;
     }
@@ -49,7 +48,6 @@ public class Entity {
     int getSpeed(){
         return this.speed;
     }
-
     void setSpeed(int speed){
         this.speed = speed;
     }
@@ -57,7 +55,6 @@ public class Entity {
     int getStrength(){
         return this.strength;
     }
-
     void setStrength(int strength){
         this.strength = strength;
     }
@@ -69,7 +66,6 @@ public class Entity {
     int getStamina(){
         return this.stamina;
     }
-
     void setStamina(int stamina) {
         this.stamina = stamina;
     }
@@ -77,7 +73,6 @@ public class Entity {
     int getArmor(){
         return this.armor;
     }
-
     void setArmor(int armor) {
         this.armor = armor;
     }
