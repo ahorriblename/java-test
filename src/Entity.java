@@ -21,7 +21,7 @@ public class Entity {
         10 = Legendary
      */
 
-    Entity(){
+    Entity() {
         this.health = 100;
         this.speed = 5;
         this.strength = 5;
@@ -29,7 +29,7 @@ public class Entity {
         this.armor = 5;
     }
 
-    Entity(int health, int speed, int strength, int stamina, int armor){
+    Entity(int health, int speed, int strength, int stamina, int armor) {
         this.health = health;
         this.speed = speed;
         this.strength = strength;
@@ -37,59 +37,70 @@ public class Entity {
         this.armor = armor;
     }
 
-    int getHealth(){
+    int getHealth() {
         return this.health;
     }
-    void setHealth(int health){
+
+    void setHealth(int health) {
         this.health = health;
     }
 
-    int getSpeed(){
+    int getSpeed() {
         return this.speed;
     }
-    void setSpeed(int speed){
+
+    void setSpeed(int speed) {
         this.speed = speed;
     }
 
-    int getStrength(){
+    int getStrength() {
         return this.strength;
     }
-    void setStrength(int strength){
+
+    void setStrength(int strength) {
         this.strength = strength;
     }
 
-    int getStamina(){
+    int getStamina() {
         return this.stamina;
     }
+
     void setStamina(int stamina) {
         this.stamina = stamina;
     }
 
-    int getArmor(){
+    int getArmor() {
         return this.armor;
     }
+
     void setArmor(int armor) {
         this.armor = armor;
     }
 
-    String getName(){
+    String getName() {
         return this.name;
     }
-    void setName(String name){
+
+    void setName(String name) {
         this.name = name;
     }
 
     void setDamage(int damage) {
         this.damage = damage;
     }
-    int getDamage(){
+
+    int getDamage() {
         return this.damage;
     }
 
-    void takeDamage(){}
-    void dealDamage(){}
+    void takeDamage() {
+    }
 
-    void setTarget(Entity target){}
+    void dealDamage() {
+    }
+
+    void setTarget(Entity target) {
+    }
 
     @Override
     public String toString() {
