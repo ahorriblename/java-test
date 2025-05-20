@@ -79,4 +79,6 @@ public class Entity {
     }
     void takeDamage(){}
     void dealDamage(){}
+
+    void setTarget(Entity target){}
 }

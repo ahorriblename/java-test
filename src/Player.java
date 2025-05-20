@@ -16,6 +16,15 @@ public class Player extends Entity{
     }
 
     @Override
+    void setTarget(Entity target) {
+        this.targetEnemy = (Enemy) target;
+    }
+
+    Enemy getTarget() {
+        return this.targetEnemy;
+    }
+
+    @Override
     void dealDamage() {
         setDamage(getStrength() - this.targetEnemy.getArmor());
         this.targetEnemy.setHealth(getStrength() - this.targetEnemy.getArmor());
