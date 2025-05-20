@@ -5,6 +5,7 @@ public class Entity {
     private int damage;
     private int stamina;
     private int armor;
+    private String name;
 
     /* will try 0-10 for stats
         0 = Abysmal
@@ -71,12 +72,20 @@ public class Entity {
         this.armor = armor;
     }
 
+    String getName(){
+        return this.name;
+    }
+    void setName(String name){
+        this.name = name;
+    }
+
     void setDamage(int damage) {
         this.damage = damage;
     }
     int getDamage(){
         return this.damage;
     }
+
     void takeDamage(){}
     void dealDamage(){}
 
