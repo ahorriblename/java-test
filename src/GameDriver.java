@@ -14,5 +14,8 @@ public class GameDriver {
         player1.setArmor(0);
         defaultEnemy.dealDamage();
         System.out.println("Enemy dealt " + defaultEnemy.getDamage() + " damage!");
+
+        System.out.println(defaultEnemy);
+        System.out.println(player1);
     }
 }

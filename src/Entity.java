@@ -81,4 +81,11 @@ public class Entity {
     void dealDamage(){}
 
     void setTarget(Entity target){}
+
+    @Override
+    public String toString() {
+        return "Entity stats\n Health: " + this.health + "\n Speed: " + this.speed
+                + "\n Strength: " + this.strength + "\n Damage: " + this.damage
+                + "\n Stamina: " + this.stamina + "\n Armor: " + this.armor;
+    }
 }
