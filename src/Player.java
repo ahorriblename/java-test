@@ -23,10 +23,4 @@ public class Player extends Entity {
     Enemy getTarget() {
         return this.targetEnemy;
     }
-
-    @Override
-    void dealDamage() {
-        setDamage(getStrength() - this.targetEnemy.getArmor());
-        this.targetEnemy.setHealth(getStrength() - this.targetEnemy.getArmor());
-    }
 }

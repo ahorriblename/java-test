@@ -93,19 +93,13 @@ public class Entity {
         return this.damage;
     }
 
-    void takeDamage() {
-    }
-
-    void dealDamage() {
-    }
-
     void setTarget(Entity target) {
     }
 
     @Override
     public String toString() {
         return this.name + " stats\n Health: " + this.health + "\n Speed: " + this.speed
-                + "\n Strength: " + this.strength + "\n Damage: " + this.damage
-                + "\n Stamina: " + this.stamina + "\n Armor: " + this.armor;
+                + "\n Strength: " + this.strength + "\n Stamina: "
+                + this.stamina + "\n Armor: " + this.armor;
     }
 }
