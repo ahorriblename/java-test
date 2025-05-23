@@ -1,8 +1,13 @@
-public class Player extends Entity {
+public class Player<T extends Role> extends Entity {
+    T role;
     private Enemy targetEnemy;
 
     Player() {
         super();
+    }
+
+    Player(T role) {
+        this.role = role;
     }
 
     Player(Enemy target) {
@@ -13,6 +18,10 @@ public class Player extends Entity {
     Player(int health, int speed, int strength, int stamina, int armor, Enemy target) {
         super(health, speed, strength, stamina, armor);
         this.targetEnemy = target;
+    }
+
+    void setRole(T role) {
+        this.role = role;
     }
 
     @Override

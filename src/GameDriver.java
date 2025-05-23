@@ -1,10 +1,14 @@
 public class GameDriver {
     public static void main(String[] args) {
-        Enemy defaultEnemy = new Enemy();
-        Player player1 = new Player(defaultEnemy);
+        Enemy<Goblin> defaultEnemy = new Enemy<>(new Goblin());
+        Player<Warrior> player1 = new Player<>(defaultEnemy);
         defaultEnemy.setTarget(player1);
         defaultEnemy.setName("Default Enemy");
         player1.setName("Player 1");
+
+        player1.setRole(new Warrior());
+        player1.role.sayHello();
+        defaultEnemy.role.sayHello();
 
         System.out.println(player1.getName() + " drank a strength potion! Strength set to" +
                 " max! (10)");
