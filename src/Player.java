@@ -1,5 +1,5 @@
 public class Player<T extends Role> extends Entity {
-    T role;
+    private T role;
     private Enemy targetEnemy;
 
     Player() {
@@ -22,6 +22,10 @@ public class Player<T extends Role> extends Entity {
 
     void setRole(T role) {
         this.role = role;
+    }
+
+    T getRole() {
+        return this.role;
     }
 
     @Override

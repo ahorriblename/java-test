@@ -7,8 +7,8 @@ public class GameDriver {
         player1.setName("Player 1");
 
         player1.setRole(new Warrior());
-        player1.role.sayHello();
-        defaultEnemy.role.sayHello();
+        player1.getRole().sayHello();
+        defaultEnemy.getRole().sayHello();
 
         System.out.println(player1.getName() + " drank a strength potion! Strength set to" +
                 " max! (10)");
