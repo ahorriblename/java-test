@@ -1,32 +1,18 @@
-public class Enemy<T extends Role> extends Entity {
-    private T role;
+public class Enemy extends Entity {
     private Player targetPlayer;
 
     Enemy() {
         super();
     }
 
-    Enemy(T role) {
-        this.role = role;
-    }
-
-    Enemy(Player target, T role) {
+    Enemy(Player target) {
         super();
         this.targetPlayer = target;
-        this.role = role;
     }
 
     Enemy(int health, int speed, int strength, int stamina, int armor, Player target) {
         super(health, speed, strength, stamina, armor);
         this.targetPlayer = target;
-    }
-
-    void setRole(T role) {
-        this.role = role;
-    }
-
-    T getRole() {
-        return this.role;
     }
 
     @Override
