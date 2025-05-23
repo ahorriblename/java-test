@@ -22,7 +22,7 @@ public class Entity {
      */
 
     Entity() {
-        this.health = 100;
+        this.health = 10;
         this.speed = 5;
         this.strength = 5;
         this.stamina = 5;
