@@ -96,6 +96,12 @@ public class Entity {
     void setTarget(Entity target) {
     }
 
+    void setDamageToZeroIfNegative() {
+        if(this.damage < 0) {
+            this.damage = 0;
+        }
+    }
+
     @Override
     public String toString() {
         return this.name + " stats\n Health: " + this.health + "\n Speed: " + this.speed

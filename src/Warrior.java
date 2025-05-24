@@ -1,6 +1,12 @@
 public class Warrior extends Player {
     public Warrior() {
         super();
+        setHealth(10);
+        setArmor(5);
+        setSpeed(3);
+        setName("Warrior");
+        setStamina(5);
+        setStrength(5);
     }
 
     public Warrior(int health, int speed, int strength, int stamina, int armor, Enemy target) {
@@ -10,6 +16,7 @@ public class Warrior extends Player {
     void crush() {
         setDamage(getStrength() - this.getTarget().getArmor() + 3);
         this.getTarget().setHealth(this.getTarget().getHealth() - getDamage());
+        setDamageToZeroIfNegative();
 
         System.out.println(getName() + " crushed " + getTarget().getName() + "!");
         System.out.println(getName() + " dealt " + getDamage() + " damage to "

@@ -6,18 +6,9 @@ public class GameDriver {
         defaultEnemy.setTarget(player1);
         player1.setTarget(defaultEnemy);
 
-        defaultEnemy.setName("Default Enemy");
         player1.setName("Player 1");
 
-        System.out.println(player1.getName() + " drank a strength potion! Strength set to" +
-                " max! (10)");
-        player1.setStrength(10);
-
         player1.crush();
-
-        System.out.println(defaultEnemy.getName() + " used armor piercing spell! " +
-                "Player armor reduced to 0!");
-        player1.setArmor(0);
 
         defaultEnemy.slash();
 
