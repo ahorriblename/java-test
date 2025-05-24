@@ -10,5 +10,9 @@ public class Warrior extends Player {
     void crush() {
         setDamage(getStrength() - this.getTarget().getArmor() + 3);
         this.getTarget().setHealth(this.getTarget().getHealth() - getDamage());
+
+        System.out.println(getName() + " crushed " + getTarget().getName() + "!");
+        System.out.println(getName() + " dealt " + getDamage() + " damage to "
+                + getTarget().getName() + "!");
     }
 }

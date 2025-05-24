@@ -14,16 +14,12 @@ public class GameDriver {
         player1.setStrength(10);
 
         player1.crush();
-        System.out.println(player1.getName() + " dealt " + player1.getDamage() + " damage!");
 
         System.out.println(defaultEnemy.getName() + " used armor piercing spell! " +
                 "Player armor reduced to 0!");
         player1.setArmor(0);
 
-        System.out.println(defaultEnemy.getName() + " used slash!");
         defaultEnemy.slash();
-        System.out.println(defaultEnemy.getName() + " dealt " + defaultEnemy.getDamage()
-                + " damage!");
 
         System.out.println(defaultEnemy);
         System.out.println(player1);
