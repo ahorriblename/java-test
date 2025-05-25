@@ -22,6 +22,8 @@ public class GameDriver {
 
         if (playerWarrior != null) {
             playWarriorRound1(playerWarrior, defaultEnemy);
+        } else {
+            playBarbarianRound1(playerBarb, defaultEnemy);
         }
 
     }
@@ -77,6 +79,47 @@ public class GameDriver {
             System.out.println(playerWarrior);
 
             if(playerWarrior.getHealth() <= 0) {
+                System.out.println("You died!");
+                break;
+            } else if (defaultEnemy.getHealth() <= 0) {
+                System.out.println("You killed "+ defaultEnemy.getName());
+                break;
+            }
+        }
+    }
+
+    static void playBarbarianRound1(Barbarian playerBarb, Goblin defaultEnemy) {
+        System.out.println("You see a goblin");
+        defaultEnemy.setTarget(playerBarb);
+        playerBarb.setTarget(defaultEnemy);
+
+        while (true) {
+            System.out.println("Pick your move");
+            Scanner input = new Scanner(System.in);
+            String move = input.nextLine();
+            move.toLowerCase();
+
+            if(move.equals("clobber")) {
+                playerBarb.storeMove(move);
+            } else {
+                System.out.println("enter valid move");
+                continue;
+            }
+
+            defaultEnemy.storeMove("slash");
+
+            if(playerBarb.getSpeed() >= defaultEnemy.getSpeed()){
+                playerBarb.moveToUse();
+                defaultEnemy.moveToUse();
+            } else {
+                defaultEnemy.moveToUse();
+                playerBarb.moveToUse();
+            }
+
+            System.out.println(defaultEnemy);
+            System.out.println(playerBarb);
+
+            if(playerBarb.getHealth() <= 0) {
                 System.out.println("You died!");
                 break;
             } else if (defaultEnemy.getHealth() <= 0) {
