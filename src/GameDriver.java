@@ -21,8 +21,10 @@ public class GameDriver {
         }
 
         if (playerWarrior != null) {
+            playerWarrior.setName(getPlayerName());
             playWarriorRound1(playerWarrior, defaultEnemy);
         } else {
+            playerBarb.setName(getPlayerName());
             playBarbarianRound1(playerBarb, defaultEnemy);
         }
 
@@ -56,7 +58,7 @@ public class GameDriver {
             System.out.println("Type stats to print out player and enemy statistics");
             listWarriorMoves();
 
-            System.out.println("Pick your move");
+            System.out.print("Pick your move: ");
             Scanner input = new Scanner(System.in);
             String move = input.nextLine();
             move.toLowerCase();
@@ -103,7 +105,7 @@ public class GameDriver {
             System.out.println("Type stats to print out player and enemy statistics");
             listBarbarianMoves();
 
-            System.out.println("Pick your move");
+            System.out.print("Pick your move: ");
             Scanner input = new Scanner(System.in);
             String move = input.nextLine();
             move.toLowerCase();
@@ -130,9 +132,6 @@ public class GameDriver {
                 defaultEnemy.moveToUse();
                 playerBarb.moveToUse();
             }
-
-            System.out.println(defaultEnemy);
-            System.out.println(playerBarb);
 
             if (playerBarb.getHealth() <= 0) {
                 System.out.println("You died!");
