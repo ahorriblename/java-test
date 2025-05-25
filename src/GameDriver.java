@@ -20,19 +20,9 @@ public class GameDriver {
             playerWarrior = (Warrior) playerTemp;
         }
 
-        defaultEnemy.setTarget(playerWarrior);
-        playerWarrior.setTarget(defaultEnemy);
-
-        playerWarrior.setName(getPlayerName());
-        System.out.println("Hello " + playerWarrior.getName() + "!");
-
-
-        playerWarrior.crush();
-
-        defaultEnemy.slash();
-
-        System.out.println(defaultEnemy);
-        System.out.println(playerWarrior);
+        if (playerWarrior != null) {
+            playWarriorRound1(playerWarrior, defaultEnemy);
+        }
 
     }
 
@@ -53,5 +43,46 @@ public class GameDriver {
             case "barbarian" -> new Barbarian();
             default -> new Warrior();
         };
+    }
+
+    static void playWarriorRound1(Warrior playerWarrior, Goblin defaultEnemy) {
+        System.out.println("You see a goblin");
+        defaultEnemy.setTarget(playerWarrior);
+        playerWarrior.setTarget(defaultEnemy);
+
+        while (true) {
+            System.out.println("Pick your move");
+            Scanner input = new Scanner(System.in);
+            String move = input.nextLine();
+            move.toLowerCase();
+
+            if(move.equals("crush")) {
+                playerWarrior.storeMove(move);
+            } else {
+                System.out.println("enter valid move");
+                continue;
+            }
+
+            defaultEnemy.storeMove("slash");
+
+            if(playerWarrior.getSpeed() >= defaultEnemy.getSpeed()){
+                playerWarrior.moveToUse();
+                defaultEnemy.moveToUse();
+            } else {
+                defaultEnemy.moveToUse();
+                playerWarrior.moveToUse();
+            }
+
+            System.out.println(defaultEnemy);
+            System.out.println(playerWarrior);
+
+            if(playerWarrior.getHealth() <= 0) {
+                System.out.println("You died!");
+                break;
+            } else if (defaultEnemy.getHealth() <= 0) {
+                System.out.println("You killed "+ defaultEnemy.getName());
+                break;
+            }
+        }
     }
 }

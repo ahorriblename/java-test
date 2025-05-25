@@ -22,4 +22,15 @@ public class Warrior extends Player {
         System.out.println(getName() + " dealt " + getDamage() + " damage to "
                 + getTarget().getName() + "!");
     }
+
+    void moveToUse() {
+        switch(getMove()) {
+            case "crush" -> crush();
+            default -> System.out.print("No move");
+        }
+    }
+
+    boolean validateMove() {
+        return false;
+    }
 }

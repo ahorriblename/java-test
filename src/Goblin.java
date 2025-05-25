@@ -22,4 +22,11 @@ public class Goblin extends Enemy {
         System.out.println(getName() + " dealt " + getDamage() + " damage to "
                 + getTarget().getName() + "!");
     }
+
+    void moveToUse() {
+        switch(getMove()) {
+            case "slash" -> slash();
+            default -> System.out.print("No move");
+        }
+    }
 }

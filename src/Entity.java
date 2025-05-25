@@ -6,6 +6,7 @@ public class Entity {
     private int stamina;
     private int armor;
     private String name;
+    private String move;
 
     /* will try 0-10 for stats
         0 = Abysmal
@@ -100,6 +101,14 @@ public class Entity {
         if(this.damage < 0) {
             this.damage = 0;
         }
+    }
+
+    void storeMove(String move) {
+        this.move = move;
+    }
+
+    String getMove() {
+        return this.move;
     }
 
     @Override

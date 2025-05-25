@@ -22,4 +22,11 @@ public class Barbarian extends Player {
         System.out.println(getName() + " dealt " + getDamage() + " damage to "
                 + getTarget().getName() + "!");
     }
+
+    void moveToUse() {
+        switch(getMove()) {
+            case "clobber" -> clobber();
+            default -> System.out.print("No move");
+        }
+    }
 }
