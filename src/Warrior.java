@@ -24,7 +24,7 @@ public class Warrior extends Player {
     }
 
     void moveToUse() {
-        switch(getMove()) {
+        switch (getMove()) {
             case "crush" -> crush();
             default -> System.out.print("No move");
         }

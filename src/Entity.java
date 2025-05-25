@@ -98,7 +98,7 @@ public class Entity {
     }
 
     void setDamageToZeroIfNegative() {
-        if(this.damage < 0) {
+        if (this.damage < 0) {
             this.damage = 0;
         }
     }

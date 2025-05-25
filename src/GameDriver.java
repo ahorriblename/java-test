@@ -8,7 +8,6 @@ public class GameDriver {
         String playerRole = playerTemp.getClass().getSimpleName();
         System.out.println("You chose " + playerRole);
 
-        // lines 12-21 band-aid fix
         Warrior playerWarrior = null;
         Barbarian playerBarb = null;
 
@@ -58,7 +57,7 @@ public class GameDriver {
             String move = input.nextLine();
             move.toLowerCase();
 
-            if(move.equals("crush")) {
+            if (move.equals("crush")) {
                 playerWarrior.storeMove(move);
             } else {
                 System.out.println("enter valid move");
@@ -67,7 +66,7 @@ public class GameDriver {
 
             defaultEnemy.storeMove("slash");
 
-            if(playerWarrior.getSpeed() >= defaultEnemy.getSpeed()){
+            if (playerWarrior.getSpeed() >= defaultEnemy.getSpeed()) {
                 playerWarrior.moveToUse();
                 defaultEnemy.moveToUse();
             } else {
@@ -78,11 +77,11 @@ public class GameDriver {
             System.out.println(defaultEnemy);
             System.out.println(playerWarrior);
 
-            if(playerWarrior.getHealth() <= 0) {
+            if (playerWarrior.getHealth() <= 0) {
                 System.out.println("You died!");
                 break;
             } else if (defaultEnemy.getHealth() <= 0) {
-                System.out.println("You killed "+ defaultEnemy.getName());
+                System.out.println("You killed " + defaultEnemy.getName());
                 break;
             }
         }
@@ -99,7 +98,7 @@ public class GameDriver {
             String move = input.nextLine();
             move.toLowerCase();
 
-            if(move.equals("clobber")) {
+            if (move.equals("clobber")) {
                 playerBarb.storeMove(move);
             } else {
                 System.out.println("enter valid move");
@@ -108,7 +107,7 @@ public class GameDriver {
 
             defaultEnemy.storeMove("slash");
 
-            if(playerBarb.getSpeed() >= defaultEnemy.getSpeed()){
+            if (playerBarb.getSpeed() >= defaultEnemy.getSpeed()) {
                 playerBarb.moveToUse();
                 defaultEnemy.moveToUse();
             } else {
@@ -119,11 +118,11 @@ public class GameDriver {
             System.out.println(defaultEnemy);
             System.out.println(playerBarb);
 
-            if(playerBarb.getHealth() <= 0) {
+            if (playerBarb.getHealth() <= 0) {
                 System.out.println("You died!");
                 break;
             } else if (defaultEnemy.getHealth() <= 0) {
-                System.out.println("You killed "+ defaultEnemy.getName());
+                System.out.println("You killed " + defaultEnemy.getName());
                 break;
             }
         }

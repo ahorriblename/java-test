@@ -24,7 +24,7 @@ public class Goblin extends Enemy {
     }
 
     void moveToUse() {
-        switch(getMove()) {
+        switch (getMove()) {
             case "slash" -> slash();
             default -> System.out.print("No move");
         }
