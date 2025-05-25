@@ -17,6 +17,7 @@ public class GameDriver {
             playerBarb = (Barbarian) playerTemp;
         } else {
             playerWarrior = (Warrior) playerTemp;
+            System.out.println("Default role");
         }
 
         if (playerWarrior != null) {
@@ -52,6 +53,9 @@ public class GameDriver {
         playerWarrior.setTarget(defaultEnemy);
 
         while (true) {
+            System.out.println("Type stats to print out player and enemy statistics");
+            listWarriorMoves();
+
             System.out.println("Pick your move");
             Scanner input = new Scanner(System.in);
             String move = input.nextLine();
@@ -59,6 +63,12 @@ public class GameDriver {
 
             if (move.equals("crush")) {
                 playerWarrior.storeMove(move);
+            } else if (move.equals("armorup")) {
+                playerWarrior.storeMove(move);
+            } else if(move.equals("stats")) {
+                System.out.println(defaultEnemy);
+                System.out.println(playerWarrior);
+                continue;
             } else {
                 System.out.println("enter valid move");
                 continue;
@@ -73,9 +83,6 @@ public class GameDriver {
                 defaultEnemy.moveToUse();
                 playerWarrior.moveToUse();
             }
-
-            System.out.println(defaultEnemy);
-            System.out.println(playerWarrior);
 
             if (playerWarrior.getHealth() <= 0) {
                 System.out.println("You died!");
@@ -93,6 +100,9 @@ public class GameDriver {
         playerBarb.setTarget(defaultEnemy);
 
         while (true) {
+            System.out.println("Type stats to print out player and enemy statistics");
+            listBarbarianMoves();
+
             System.out.println("Pick your move");
             Scanner input = new Scanner(System.in);
             String move = input.nextLine();
@@ -100,6 +110,12 @@ public class GameDriver {
 
             if (move.equals("clobber")) {
                 playerBarb.storeMove(move);
+            } else if (move.equals("enrage")) {
+                playerBarb.storeMove(move);
+            } else if(move.equals("stats")) {
+                System.out.println(defaultEnemy);
+                System.out.println(playerBarb);
+                continue;
             } else {
                 System.out.println("enter valid move");
                 continue;
@@ -126,5 +142,17 @@ public class GameDriver {
                 break;
             }
         }
+    }
+
+    static void listWarriorMoves() {
+        System.out.println("List of moves");
+        System.out.println(" 1. Crush");
+        System.out.println(" 2. ArmorUp");
+    }
+
+    static void listBarbarianMoves() {
+        System.out.println("List of moves");
+        System.out.println(" 1. Clobber");
+        System.out.println(" 2. Enrage");
     }
 }

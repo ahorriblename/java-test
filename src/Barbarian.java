@@ -23,9 +23,19 @@ public class Barbarian extends Player {
                 + getTarget().getName() + "!");
     }
 
+    void enrage() {
+        setStrength(getStrength() + 2);
+        setHealth(getHealth() - 1);
+
+        System.out.println(getName() + " enraged, strength increased by 2! (Now "
+                + getStrength() + ")");
+        System.out.println("Took 1 damage from reckless anger");
+    }
+
     void moveToUse() {
         switch (getMove()) {
             case "clobber" -> clobber();
+            case "enrage" -> enrage();
             default -> System.out.print("No move");
         }
     }

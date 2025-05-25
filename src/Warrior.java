@@ -23,10 +23,17 @@ public class Warrior extends Player {
                 + getTarget().getName() + "!");
     }
 
+    void armorUp() {
+        setArmor(getArmor() + 1);
+
+        System.out.println(getName() + " armored up 1! (Now " + getArmor() + ")");
+    }
+
     void moveToUse() {
         switch (getMove()) {
             case "crush" -> crush();
-            default -> System.out.print("No move");
+            case "armorup" -> armorUp();
+            default -> System.out.println("No move");
         }
     }
 
