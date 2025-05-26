@@ -76,7 +76,7 @@ public class GameDriver {
                 continue;
             }
 
-            defaultEnemy.storeMove("slash");
+            defaultEnemy.getEnemyMove();
 
             if (playerWarrior.getSpeed() >= defaultEnemy.getSpeed()) {
                 playerWarrior.moveToUse();
@@ -85,6 +85,9 @@ public class GameDriver {
                 defaultEnemy.moveToUse();
                 playerWarrior.moveToUse();
             }
+
+            playerWarrior.setStamina(playerWarrior.getStamina() + 1);
+            defaultEnemy.setStamina(defaultEnemy.getStamina() + 1);
 
             if (playerWarrior.getHealth() <= 0) {
                 System.out.println("You died!");
@@ -123,7 +126,7 @@ public class GameDriver {
                 continue;
             }
 
-            defaultEnemy.storeMove("slash");
+            defaultEnemy.getEnemyMove();
 
             if (playerBarb.getSpeed() >= defaultEnemy.getSpeed()) {
                 playerBarb.moveToUse();

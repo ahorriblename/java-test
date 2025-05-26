@@ -18,6 +18,8 @@ public class Warrior extends Player {
         this.getTarget().setHealth(this.getTarget().getHealth() - getDamage());
         setDamageToZeroIfNegative();
 
+        setStamina(getStamina() - 2);
+
         System.out.println(getName() + " crushed " + getTarget().getName() + "!");
         System.out.println(getName() + " dealt " + getDamage() + " damage to "
                 + getTarget().getName() + "!");
@@ -25,6 +27,8 @@ public class Warrior extends Player {
 
     void armorUp() {
         setArmor(getArmor() + 1);
+
+        setStamina(getStamina() - 2);
 
         System.out.println(getName() + " armored up 1! (Now " + getArmor() + ")");
     }

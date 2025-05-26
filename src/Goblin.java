@@ -6,7 +6,7 @@ public class Goblin extends Enemy {
         setSpeed(5);
         setName("Goblin");
         setStamina(2);
-        setStrength(3);
+        setStrength(2);
     }
 
     public Goblin(int health, int speed, int strength, int stamina, int armor, Player target) {
@@ -18,7 +18,21 @@ public class Goblin extends Enemy {
         this.getTarget().setHealth(this.getTarget().getHealth() - getDamage());
         setDamageToZeroIfNegative();
 
+        setStamina(getStamina() - 1);
+
         System.out.println(getName() + " used slashed " + getTarget().getName() + "!");
+        System.out.println(getName() + " dealt " + getDamage() + " damage to "
+                + getTarget().getName() + "!");
+    }
+
+    void sneakyStab() {
+        setDamage(2 + (getSpeed() / 2)); // ignores armor and scales with speed, rounds down
+        this.getTarget().setHealth(this.getTarget().getHealth() - getDamage());
+        setDamageToZeroIfNegative();
+
+        setStamina(getStamina() - 2);
+
+        System.out.println(getName() + " used sneaky stab on " + getTarget().getName() + "!");
         System.out.println(getName() + " dealt " + getDamage() + " damage to "
                 + getTarget().getName() + "!");
     }
@@ -26,7 +40,19 @@ public class Goblin extends Enemy {
     void moveToUse() {
         switch (getMove()) {
             case "slash" -> slash();
-            default -> System.out.print("No move");
+            case "sneakystab" -> sneakyStab();
+            case "nostamina" -> System.out.println(getName() + " has no stamina!");
+            default -> System.out.print("No move!");
+        }
+    }
+
+    void getEnemyMove() {
+        if(getTarget().getArmor() > 0 && getStamina() >= 2) {
+            storeMove("sneakystab");
+        } else if (getTarget().getArmor() < 0 || getStamina() == 1) {
+            storeMove("slash");
+        } else if(getStamina() == 0) {
+            storeMove("nostamina");
         }
     }
 }
