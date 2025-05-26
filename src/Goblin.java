@@ -6,11 +6,13 @@ public class Goblin extends Enemy {
         setSpeed(5);
         setName("Goblin");
         setStamina(2);
+        setMaxStamina(2);
         setStrength(2);
     }
 
-    public Goblin(int health, int speed, int strength, int stamina, int armor, Player target) {
-        super(health, speed, strength, stamina, armor, target);
+    public Goblin(int health, int speed, int strength, int stamina, int armor, int maxStamina,
+                  Player target) {
+        super(health, speed, strength, stamina, armor, maxStamina, target);
     }
 
     void slash() {

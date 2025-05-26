@@ -6,11 +6,13 @@ public class Barbarian extends Player {
         setSpeed(6);
         setName("Barbarian");
         setStamina(5);
+        setMaxStamina(5);
         setStrength(6);
     }
 
-    Barbarian(int health, int speed, int strength, int stamina, int armor, Enemy target) {
-        super(health, speed, strength, stamina, armor, target);
+    Barbarian(int health, int speed, int strength, int stamina, int armor, int maxStamina,
+              Enemy target) {
+        super(health, speed, strength, stamina, armor, maxStamina, target);
     }
 
     void clobber() {

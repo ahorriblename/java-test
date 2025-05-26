@@ -4,6 +4,7 @@ public class Entity {
     private int strength;
     private int damage;
     private int stamina;
+    private int maxStamina;
     private int armor;
     private String name;
     private String move;
@@ -27,14 +28,16 @@ public class Entity {
         this.speed = 5;
         this.strength = 5;
         this.stamina = 5;
+        this.maxStamina = 5;
         this.armor = 5;
     }
 
-    Entity(int health, int speed, int strength, int stamina, int armor) {
+    Entity(int health, int speed, int strength, int stamina, int armor, int maxStamina) {
         this.health = health;
         this.speed = speed;
         this.strength = strength;
         this.stamina = stamina;
+        this.maxStamina = maxStamina;
         this.armor = armor;
     }
 
@@ -68,6 +71,14 @@ public class Entity {
 
     void setStamina(int stamina) {
         this.stamina = stamina;
+    }
+
+    int getMaxStamina() {
+        return this.maxStamina;
+    }
+
+    void setMaxStamina(int maxStamina) {
+        this.maxStamina = maxStamina;
     }
 
     int getArmor() {
@@ -109,6 +120,15 @@ public class Entity {
 
     String getMove() {
         return this.move;
+    }
+
+    // universal move
+    void rest() {
+        this.stamina += (this.maxStamina / 2);
+
+        if(this.maxStamina < this.stamina) {
+            this.stamina = this.maxStamina;
+        }
     }
 
     @Override

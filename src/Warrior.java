@@ -6,11 +6,13 @@ public class Warrior extends Player {
         setSpeed(3);
         setName("Warrior");
         setStamina(5);
+        setMaxStamina(5);
         setStrength(5);
     }
 
-    public Warrior(int health, int speed, int strength, int stamina, int armor, Enemy target) {
-        super(health, speed, strength, stamina, armor, target);
+    public Warrior(int health, int speed, int strength, int stamina, int armor, int maxStamina,
+                   Enemy target) {
+        super(health, speed, strength, stamina, armor, maxStamina, target);
     }
 
     void crush() {
