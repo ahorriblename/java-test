@@ -53,8 +53,9 @@ public class GameDriver {
         System.out.println("You see a goblin");
         defaultEnemy.setTarget(playerWarrior);
         playerWarrior.setTarget(defaultEnemy);
+        int checkHealth = 0;
 
-        while (true) {
+        while (checkHealth == 0) {
             System.out.println("Type stats to print out player and enemy statistics");
             listWarriorMoves();
 
@@ -80,21 +81,20 @@ public class GameDriver {
 
             if (playerWarrior.getSpeed() >= defaultEnemy.getSpeed()) {
                 playerWarrior.moveToUse();
+                checkHealth = checkHealth(playerWarrior, defaultEnemy);
+                if (checkHealth == 1) {
+                    break;
+                }
                 defaultEnemy.moveToUse();
+                checkHealth = checkHealth(playerWarrior, defaultEnemy);
             } else {
                 defaultEnemy.moveToUse();
+                checkHealth = checkHealth(playerWarrior, defaultEnemy);
+                if (checkHealth == 1) {
+                    break;
+                }
                 playerWarrior.moveToUse();
-            }
-
-            playerWarrior.setStamina(playerWarrior.getStamina() + 1);
-            defaultEnemy.setStamina(defaultEnemy.getStamina() + 1);
-
-            if (playerWarrior.getHealth() <= 0) {
-                System.out.println("You died!");
-                break;
-            } else if (defaultEnemy.getHealth() <= 0) {
-                System.out.println("You killed " + defaultEnemy.getName());
-                break;
+                checkHealth = checkHealth(playerWarrior, defaultEnemy);
             }
         }
     }
@@ -103,8 +103,9 @@ public class GameDriver {
         System.out.println("You see a goblin");
         defaultEnemy.setTarget(playerBarb);
         playerBarb.setTarget(defaultEnemy);
+        int checkHealth = 0;
 
-        while (true) {
+        while (checkHealth == 0) {
             System.out.println("Type stats to print out player and enemy statistics");
             listBarbarianMoves();
 
@@ -130,18 +131,20 @@ public class GameDriver {
 
             if (playerBarb.getSpeed() >= defaultEnemy.getSpeed()) {
                 playerBarb.moveToUse();
+                checkHealth = checkHealth(playerBarb, defaultEnemy);
+                if (checkHealth == 1) {
+                    break;
+                }
                 defaultEnemy.moveToUse();
+                checkHealth = checkHealth(playerBarb, defaultEnemy);
             } else {
                 defaultEnemy.moveToUse();
+                checkHealth = checkHealth(playerBarb, defaultEnemy);
+                if (checkHealth == 1) {
+                    break;
+                }
                 playerBarb.moveToUse();
-            }
-
-            if (playerBarb.getHealth() <= 0) {
-                System.out.println("You died!");
-                break;
-            } else if (defaultEnemy.getHealth() <= 0) {
-                System.out.println("You killed " + defaultEnemy.getName());
-                break;
+                checkHealth = checkHealth(playerBarb, defaultEnemy);
             }
         }
     }
@@ -156,5 +159,17 @@ public class GameDriver {
         System.out.println("List of moves");
         System.out.println(" 1. Clobber");
         System.out.println(" 2. Enrage");
+    }
+
+    static int checkHealth(Entity entity1, Entity entity2) {
+        if (entity1.getHealth() <= 0) {
+            System.out.println("You died!");
+            return 1;
+        } else if (entity2.getHealth() <= 0) {
+            System.out.println("You killed " + entity2.getName());
+            return 1;
+        }
+
+        return 0;
     }
 }

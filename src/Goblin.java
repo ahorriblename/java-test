@@ -43,7 +43,7 @@ public class Goblin extends Enemy {
         switch (getMove()) {
             case "slash" -> slash();
             case "sneakystab" -> sneakyStab();
-            case "nostamina" -> System.out.println(getName() + " has no stamina!");
+            case "rest" -> rest();
             default -> System.out.print("No move!");
         }
     }
@@ -51,10 +51,12 @@ public class Goblin extends Enemy {
     void getEnemyMove() {
         if(getTarget().getArmor() > 0 && getStamina() >= 2) {
             storeMove("sneakystab");
-        } else if (getTarget().getArmor() < 0 || getStamina() == 1) {
+        } else if (getTarget().getArmor() < 0 || getStamina() >= 1) {
             storeMove("slash");
         } else if(getStamina() == 0) {
-            storeMove("nostamina");
+            storeMove("rest");
+        } else {
+            storeMove("rest");
         }
     }
 }

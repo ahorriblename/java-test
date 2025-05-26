@@ -129,6 +129,9 @@ public class Entity {
         if(this.maxStamina < this.stamina) {
             this.stamina = this.maxStamina;
         }
+
+        System.out.println(this.name + " rested...");
+        System.out.println("Stamina is now at " + this.stamina);
     }
 
     @Override
