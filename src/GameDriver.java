@@ -4,6 +4,7 @@ public class GameDriver {
     public static void main(String[] args) {
         Goblin defaultEnemy = new Goblin();
 
+        listRoles();
         Player playerTemp = getPlayerRole();
         String playerRole = playerTemp.getClass().getSimpleName();
         System.out.println("You chose " + playerRole);
@@ -45,7 +46,7 @@ public class GameDriver {
         return switch (role) {
             case "warrior" -> new Warrior();
             case "barbarian" -> new Barbarian();
-            default -> new Warrior();
+            default -> getPlayerRole();
         };
     }
 
@@ -159,6 +160,12 @@ public class GameDriver {
         System.out.println("List of moves");
         System.out.println(" 1. Clobber");
         System.out.println(" 2. Enrage");
+    }
+
+    static void listRoles() {
+        System.out.println("List of roles");
+        System.out.println(" 1. Warrior");
+        System.out.println(" 2. Barbarian");
     }
 
     static int checkHealth(Entity entity1, Entity entity2) {
