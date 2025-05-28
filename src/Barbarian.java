@@ -42,6 +42,7 @@ public class Barbarian extends Player {
         switch (getMove()) {
             case "clobber" -> clobber();
             case "enrage" -> enrage();
+            case "rest" -> rest();
             default -> System.out.print("No move");
         }
     }

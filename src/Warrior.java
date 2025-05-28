@@ -39,6 +39,7 @@ public class Warrior extends Player {
         switch (getMove()) {
             case "crush" -> crush();
             case "armorup" -> armorUp();
+            case "rest" -> rest();
             default -> System.out.println("No move");
         }
     }

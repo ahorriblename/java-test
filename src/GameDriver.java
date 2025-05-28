@@ -41,7 +41,7 @@ public class GameDriver {
         Scanner input = new Scanner(System.in);
         System.out.print("Enter your role: ");
         String role = input.nextLine();
-        role.toLowerCase();
+        role = role.toLowerCase();
 
         return switch (role) {
             case "warrior" -> new Warrior();
@@ -65,14 +65,16 @@ public class GameDriver {
             String move = input.nextLine();
             move.toLowerCase();
 
-            if (move.equals("crush")) {
+            if (move.equals("crush") && playerWarrior.getStamina() >= 2) {
                 playerWarrior.storeMove(move);
-            } else if (move.equals("armorup")) {
+            } else if (move.equals("armorup") && playerWarrior.getStamina() >= 2) {
                 playerWarrior.storeMove(move);
             } else if(move.equals("stats")) {
                 System.out.println(defaultEnemy);
                 System.out.println(playerWarrior);
                 continue;
+            } else if(move.equals("rest")) {
+                playerWarrior.storeMove(move);
             } else {
                 System.out.println("enter valid move");
                 continue;
@@ -115,14 +117,16 @@ public class GameDriver {
             String move = input.nextLine();
             move.toLowerCase();
 
-            if (move.equals("clobber")) {
+            if (move.equals("clobber") && playerBarb.getStamina() >= 2) {
                 playerBarb.storeMove(move);
-            } else if (move.equals("enrage")) {
+            } else if (move.equals("enrage") && playerBarb.getStamina() >= 1) {
                 playerBarb.storeMove(move);
             } else if(move.equals("stats")) {
                 System.out.println(defaultEnemy);
                 System.out.println(playerBarb);
                 continue;
+            } else if(move.equals("rest")) {
+                playerBarb.storeMove(move);
             } else {
                 System.out.println("enter valid move");
                 continue;
@@ -152,14 +156,16 @@ public class GameDriver {
 
     static void listWarriorMoves() {
         System.out.println("List of moves");
-        System.out.println(" 1. Crush");
-        System.out.println(" 2. ArmorUp");
+        System.out.println(" 1. Crush (2 Stamina)");
+        System.out.println(" 2. ArmorUp (2 Stamina)");
+        System.out.println(" 3. Rest");
     }
 
     static void listBarbarianMoves() {
         System.out.println("List of moves");
-        System.out.println(" 1. Clobber");
-        System.out.println(" 2. Enrage");
+        System.out.println(" 1. Clobber (2 Stamina)");
+        System.out.println(" 2. Enrage (1 Stamina)");
+        System.out.println(" 3. Rest");
     }
 
     static void listRoles() {
