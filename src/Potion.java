@@ -40,12 +40,12 @@ public class Potion {
     }
 }
 
-class healthPotion extends Potion {
-    healthPotion() {
+class HealthPotion extends Potion {
+    HealthPotion() {
         super("Health Potion", 1, null);
     }
 
-    healthPotion(String name, int uses, Entity target) {
+    HealthPotion(String name, int uses, Entity target) {
         super(name, uses, target);
     }
 
@@ -54,7 +54,9 @@ class healthPotion extends Potion {
         if (getUses() > 0) {
             setUses(getUses() - 1);
             getTarget().setHealth(target.getHealth() + 5);
+            System.out.println(target.getName() + " used " + getName());
             System.out.println(target.getName() + " restored 5 health!");
+            System.out.println(getUses() + " uses left...");
         } else {
             System.out.println("No more uses...");
         }

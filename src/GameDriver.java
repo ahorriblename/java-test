@@ -141,6 +141,7 @@ public class GameDriver {
         System.out.println(" 1. Crush (2 Stamina)");
         System.out.println(" 2. ArmorUp (2 Stamina)");
         System.out.println(" 3. Rest");
+        System.out.println(" 4. HealthPotion");
     }
 
     static void listBarbarianMoves() {
@@ -148,6 +149,7 @@ public class GameDriver {
         System.out.println(" 1. Clobber (2 Stamina)");
         System.out.println(" 2. Enrage (1 Stamina)");
         System.out.println(" 3. Rest");
+        System.out.println(" 4. HealthPotion");
     }
 
     static void listRoles() {
@@ -179,6 +181,8 @@ public class GameDriver {
             return false;
         } else if(move.equals("rest")) {
             return true;
+        } else if(move.equals("healthpotion")) {
+            return true;
         } else {
             System.out.println("enter valid move");
             return false;
@@ -195,6 +199,8 @@ public class GameDriver {
             System.out.println(player);
             return false;
         } else if(move.equals("rest")) {
+            return true;
+        } else if(move.equals("healthpotion")) {
             return true;
         } else {
             System.out.println("enter valid move");

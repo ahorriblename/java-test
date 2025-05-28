@@ -1,4 +1,6 @@
 public class Warrior extends Player {
+    private HealthPotion healthPotion;
+
     public Warrior() {
         super();
         setHealth(10);
@@ -8,11 +10,17 @@ public class Warrior extends Player {
         setStamina(5);
         setMaxStamina(5);
         setStrength(5);
+        this.healthPotion = new HealthPotion("Health Potion", 1, this);
     }
 
     public Warrior(int health, int speed, int strength, int stamina, int armor, int maxStamina,
                    Enemy target) {
         super(health, speed, strength, stamina, armor, maxStamina, target);
+        this.healthPotion = new HealthPotion("Health Potion", 1, this);
+    }
+
+    int getHealthPotionUses() {
+        return this.healthPotion.getUses();
     }
 
     void crush() {
@@ -40,6 +48,7 @@ public class Warrior extends Player {
             case "crush" -> crush();
             case "armorup" -> armorUp();
             case "rest" -> rest();
+            case "healthpotion" -> this.healthPotion.use();
             default -> System.out.println("No move");
         }
     }

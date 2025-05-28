@@ -1,4 +1,6 @@
 public class Barbarian extends Player {
+    private HealthPotion healthPotion;
+
     Barbarian() {
         super();
         setHealth(12);
@@ -8,11 +10,17 @@ public class Barbarian extends Player {
         setStamina(5);
         setMaxStamina(5);
         setStrength(6);
+        this.healthPotion = new HealthPotion("Health Potion+", 2, this);
     }
 
     Barbarian(int health, int speed, int strength, int stamina, int armor, int maxStamina,
               Enemy target) {
         super(health, speed, strength, stamina, armor, maxStamina, target);
+        this.healthPotion = new HealthPotion("Health Potion+", 2, this);
+    }
+
+    int getHealthPotionUses() {
+        return this.healthPotion.getUses();
     }
 
     void clobber() {
@@ -43,6 +51,7 @@ public class Barbarian extends Player {
             case "clobber" -> clobber();
             case "enrage" -> enrage();
             case "rest" -> rest();
+            case "healthpotion" -> this.healthPotion.use();
             default -> System.out.print("No move");
         }
     }
