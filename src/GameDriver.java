@@ -29,6 +29,17 @@ public class GameDriver {
             playBarbarianRound1(playerBarb, defaultEnemy);
         }
 
+        Goblin bigGoblin = new Goblin();
+        bigGoblin.setName("Big Goblin");
+        bigGoblin.setStrength(4);
+        bigGoblin.setHealth(12);
+
+        Goblin newGoblin = new Goblin();
+
+        boolean targetChosen = false;
+
+        playWarriorRound2(playerWarrior, newGoblin, bigGoblin, targetChosen);
+
     }
 
     static String getPlayerName() {
@@ -65,7 +76,7 @@ public class GameDriver {
             String move = input.nextLine();
             move.toLowerCase();
 
-            if(validatePlayerMove(move, playerWarrior, defaultEnemy)) {
+            if (validatePlayerMove(move, playerWarrior, defaultEnemy)) {
                 playerWarrior.storeMove(move);
             } else {
                 continue;
@@ -93,6 +104,93 @@ public class GameDriver {
         }
     }
 
+    static void playWarriorRound2(Warrior playerWarrior, Goblin enemy1, Goblin enemy2, boolean targetChosen) {
+        System.out.println("You see a goblin (goblin 1)");
+        System.out.println("You see a goblin (goblin 2)");
+
+        enemy1.setTarget(playerWarrior);
+        enemy2.setTarget(playerWarrior);
+        playerWarrior.setTarget(enemy1);
+        int checkHealth = 0;
+        Goblin chosenTarget = null;
+
+        while (checkHealth == 0) {
+            Scanner input = new Scanner(System.in);
+
+            System.out.println("Type stats to print out player and enemy statistics");
+            listWarriorMoves();
+
+            System.out.println();
+            if (targetChosen) {
+            } else {
+                chosenTarget = null;
+            }
+
+            while (targetChosen == false) {
+                System.out.print("\n Pick your target: ");
+                String target = input.nextLine();
+                target.toLowerCase();
+
+                if (target.equals("goblin 1")) {
+                    playerWarrior.setTarget(enemy1);
+                    chosenTarget = enemy1;
+                    targetChosen = true;
+                } else if (target.equals("goblin 2")) {
+                    playerWarrior.setTarget(enemy2);
+                    chosenTarget = enemy2;
+                    targetChosen = true;
+                } else {
+                    System.out.println("Invalid target");
+                    targetChosen = false;
+                }
+            }
+
+            System.out.print("Pick your move: ");
+            String move = input.nextLine();
+            move.toLowerCase();
+
+            if (validatePlayerMove(move, playerWarrior, enemy1, enemy2)) {
+                playerWarrior.storeMove(move);
+            } else {
+                continue;
+            }
+
+            enemy1.getEnemyMove();
+            enemy2.getEnemyMove();
+
+            if (playerWarrior.getSpeed() >= enemy1.getSpeed() && playerWarrior.getSpeed()
+                    >= enemy2.getSpeed()) {
+                playerWarrior.moveToUse();
+                checkHealth = checkHealth(playerWarrior, chosenTarget);
+                if (checkHealth == 1) {
+                    break;
+                }
+                enemy1.moveToUse();
+                checkHealth = checkHealth(playerWarrior, enemy1);
+                if (checkHealth == 1) {
+                    break;
+                }
+                enemy2.moveToUse();
+                checkHealth = checkHealth(playerWarrior, enemy2);
+            } else {
+                enemy1.moveToUse();
+                checkHealth = checkHealth(playerWarrior, enemy1);
+                if (checkHealth == 1) {
+                    break;
+                }
+                enemy2.moveToUse();
+                checkHealth = checkHealth(playerWarrior, enemy2);
+                if (checkHealth == 1) {
+                    break;
+                }
+                playerWarrior.moveToUse();
+                checkHealth = checkHealth(playerWarrior, chosenTarget);
+            }
+
+            targetChosen = false;
+        }
+    }
+
     static void playBarbarianRound1(Barbarian playerBarb, Goblin defaultEnemy) {
         System.out.println("You see a goblin");
         defaultEnemy.setTarget(playerBarb);
@@ -108,7 +206,7 @@ public class GameDriver {
             String move = input.nextLine();
             move.toLowerCase();
 
-            if(validatePlayerMove(move, playerBarb, defaultEnemy)) {
+            if (validatePlayerMove(move, playerBarb, defaultEnemy)) {
                 playerBarb.storeMove(move);
             } else {
                 continue;
@@ -175,13 +273,33 @@ public class GameDriver {
             return true;
         } else if (move.equals("armorup") && player.getStamina() >= 2) {
             return true;
-        } else if(move.equals("stats")) {
+        } else if (move.equals("stats")) {
             System.out.println(enemy);
             System.out.println(player);
             return false;
-        } else if(move.equals("rest")) {
+        } else if (move.equals("rest")) {
             return true;
-        } else if(move.equals("healthpotion")) {
+        } else if (move.equals("healthpotion")) {
+            return true;
+        } else {
+            System.out.println("enter valid move");
+            return false;
+        }
+    }
+
+    static boolean validatePlayerMove(String move, Warrior player, Enemy enemy1, Enemy enemy2) {
+        if (move.equals("crush") && player.getStamina() >= 2) {
+            return true;
+        } else if (move.equals("armorup") && player.getStamina() >= 2) {
+            return true;
+        } else if (move.equals("stats")) {
+            System.out.println(enemy1);
+            System.out.println(enemy2);
+            System.out.println(player);
+            return false;
+        } else if (move.equals("rest")) {
+            return true;
+        } else if (move.equals("healthpotion")) {
             return true;
         } else {
             System.out.println("enter valid move");
@@ -194,13 +312,33 @@ public class GameDriver {
             return true;
         } else if (move.equals("clobber") && player.getStamina() >= 2) {
             return true;
-        } else if(move.equals("stats")) {
+        } else if (move.equals("stats")) {
             System.out.println(enemy);
             System.out.println(player);
             return false;
-        } else if(move.equals("rest")) {
+        } else if (move.equals("rest")) {
             return true;
-        } else if(move.equals("healthpotion")) {
+        } else if (move.equals("healthpotion")) {
+            return true;
+        } else {
+            System.out.println("enter valid move");
+            return false;
+        }
+    }
+
+    static boolean validatePlayerMove(String move, Barbarian player, Enemy enemy1, Enemy enemy2) {
+        if (move.equals("enrage") && player.getStamina() >= 1) {
+            return true;
+        } else if (move.equals("clobber") && player.getStamina() >= 2) {
+            return true;
+        } else if (move.equals("stats")) {
+            System.out.println(enemy1);
+            System.out.println(enemy2);
+            System.out.println(player);
+            return false;
+        } else if (move.equals("rest")) {
+            return true;
+        } else if (move.equals("healthpotion")) {
             return true;
         } else {
             System.out.println("enter valid move");

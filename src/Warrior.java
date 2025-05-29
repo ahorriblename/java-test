@@ -25,8 +25,9 @@ public class Warrior extends Player {
 
     void crush() {
         setDamage(getStrength() - this.getTarget().getArmor() + 3);
-        this.getTarget().setHealth(this.getTarget().getHealth() - getDamage());
         setDamageToZeroIfNegative();
+
+        this.getTarget().setHealth(this.getTarget().getHealth() - getDamage());
 
         setStamina(getStamina() - 2);
 

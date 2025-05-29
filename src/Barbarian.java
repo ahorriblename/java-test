@@ -25,8 +25,9 @@ public class Barbarian extends Player {
 
     void clobber() {
         setDamage(getStrength() - this.getTarget().getArmor() + 1);
-        this.getTarget().setHealth(this.getTarget().getHealth() - getDamage());
         setDamageToZeroIfNegative();
+
+        this.getTarget().setHealth(this.getTarget().getHealth() - getDamage());
 
         setStamina(getStamina() - 2);
 

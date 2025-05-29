@@ -17,8 +17,9 @@ public class Goblin extends Enemy {
 
     void slash() {
         setDamage(getStrength() - this.getTarget().getArmor());
-        this.getTarget().setHealth(this.getTarget().getHealth() - getDamage());
         setDamageToZeroIfNegative();
+
+        this.getTarget().setHealth(this.getTarget().getHealth() - getDamage());
 
         setStamina(getStamina() - 1);
 
@@ -29,8 +30,9 @@ public class Goblin extends Enemy {
 
     void sneakyStab() {
         setDamage(2 + (getSpeed() / 2)); // ignores armor and scales with speed, rounds down
-        this.getTarget().setHealth(this.getTarget().getHealth() - getDamage());
         setDamageToZeroIfNegative();
+
+        this.getTarget().setHealth(this.getTarget().getHealth() - getDamage());
 
         setStamina(getStamina() - 2);
 
