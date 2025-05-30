@@ -24,22 +24,21 @@ public class GameDriver {
         if (playerWarrior != null) {
             playerWarrior.setName(getPlayerName());
             playWarriorRound1(playerWarrior, defaultEnemy);
+
+            Goblin bigGoblin = new Goblin();
+            bigGoblin.setName("Big Goblin");
+            bigGoblin.setStrength(4);
+            bigGoblin.setHealth(12);
+
+            Goblin newGoblin = new Goblin();
+
+            boolean targetChosen = false;
+
+            playWarriorRound2(playerWarrior, newGoblin, bigGoblin, targetChosen);
         } else {
             playerBarb.setName(getPlayerName());
             playBarbarianRound1(playerBarb, defaultEnemy);
         }
-
-        Goblin bigGoblin = new Goblin();
-        bigGoblin.setName("Big Goblin");
-        bigGoblin.setStrength(4);
-        bigGoblin.setHealth(12);
-
-        Goblin newGoblin = new Goblin();
-
-        boolean targetChosen = false;
-
-        playWarriorRound2(playerWarrior, newGoblin, bigGoblin, targetChosen);
-
     }
 
     static String getPlayerName() {
@@ -87,7 +86,7 @@ public class GameDriver {
             if (playerWarrior.getSpeed() >= defaultEnemy.getSpeed()) {
                 playerWarrior.moveToUse();
                 checkHealth = checkHealth(playerWarrior, defaultEnemy);
-                if (checkHealth == 1) {
+                if (checkHealth >= 1) {
                     break;
                 }
                 defaultEnemy.moveToUse();
@@ -95,7 +94,7 @@ public class GameDriver {
             } else {
                 defaultEnemy.moveToUse();
                 checkHealth = checkHealth(playerWarrior, defaultEnemy);
-                if (checkHealth == 1) {
+                if (checkHealth >= 1) {
                     break;
                 }
                 playerWarrior.moveToUse();
@@ -114,7 +113,7 @@ public class GameDriver {
         int checkHealth = 0;
         Goblin chosenTarget = null;
 
-        while (checkHealth == 0) {
+        while (checkHealth < 2) {
             Scanner input = new Scanner(System.in);
 
             System.out.println("Type stats to print out player and enemy statistics");
@@ -161,30 +160,30 @@ public class GameDriver {
             if (playerWarrior.getSpeed() >= enemy1.getSpeed() && playerWarrior.getSpeed()
                     >= enemy2.getSpeed()) {
                 playerWarrior.moveToUse();
-                checkHealth = checkHealth(playerWarrior, chosenTarget);
-                if (checkHealth == 1) {
+                checkHealth += checkHealth(playerWarrior, chosenTarget);
+                if (checkHealth == 2 || checkHealth >= 99) {
                     break;
                 }
                 enemy1.moveToUse();
-                checkHealth = checkHealth(playerWarrior, enemy1);
-                if (checkHealth == 1) {
+                checkHealth += checkHealth(playerWarrior, enemy1);
+                if (checkHealth == 2 || checkHealth >= 99) {
                     break;
                 }
                 enemy2.moveToUse();
-                checkHealth = checkHealth(playerWarrior, enemy2);
+                checkHealth += checkHealth(playerWarrior, enemy2);
             } else {
                 enemy1.moveToUse();
-                checkHealth = checkHealth(playerWarrior, enemy1);
-                if (checkHealth == 1) {
+                checkHealth += checkHealth(playerWarrior, enemy1);
+                if (checkHealth == 2 || checkHealth >= 99) {
                     break;
                 }
                 enemy2.moveToUse();
-                checkHealth = checkHealth(playerWarrior, enemy2);
-                if (checkHealth == 1) {
+                checkHealth += checkHealth(playerWarrior, enemy2);
+                if (checkHealth == 2 || checkHealth >= 99) {
                     break;
                 }
                 playerWarrior.moveToUse();
-                checkHealth = checkHealth(playerWarrior, chosenTarget);
+                checkHealth += checkHealth(playerWarrior, chosenTarget);
             }
 
             targetChosen = false;
@@ -217,7 +216,7 @@ public class GameDriver {
             if (playerBarb.getSpeed() >= defaultEnemy.getSpeed()) {
                 playerBarb.moveToUse();
                 checkHealth = checkHealth(playerBarb, defaultEnemy);
-                if (checkHealth == 1) {
+                if (checkHealth >= 1) {
                     break;
                 }
                 defaultEnemy.moveToUse();
@@ -225,7 +224,7 @@ public class GameDriver {
             } else {
                 defaultEnemy.moveToUse();
                 checkHealth = checkHealth(playerBarb, defaultEnemy);
-                if (checkHealth == 1) {
+                if (checkHealth >= 1) {
                     break;
                 }
                 playerBarb.moveToUse();
@@ -259,12 +258,11 @@ public class GameDriver {
     static int checkHealth(Entity entity1, Entity entity2) {
         if (entity1.getHealth() <= 0) {
             System.out.println("You died!");
-            return 1;
+            return 99;
         } else if (entity2.getHealth() <= 0) {
             System.out.println("You killed " + entity2.getName());
             return 1;
         }
-
         return 0;
     }
 
