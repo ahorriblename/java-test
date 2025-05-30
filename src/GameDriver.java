@@ -130,11 +130,11 @@ public class GameDriver {
                 String target = input.nextLine();
                 target.toLowerCase();
 
-                if (target.equals("goblin 1")) {
+                if (target.equals("goblin 1") && enemy1.getHealth() > 0) {
                     playerWarrior.setTarget(enemy1);
                     chosenTarget = enemy1;
                     targetChosen = true;
-                } else if (target.equals("goblin 2")) {
+                } else if (target.equals("goblin 2") && enemy2.getHealth() > 0) {
                     playerWarrior.setTarget(enemy2);
                     chosenTarget = enemy2;
                     targetChosen = true;
@@ -154,36 +154,84 @@ public class GameDriver {
                 continue;
             }
 
-            enemy1.getEnemyMove();
-            enemy2.getEnemyMove();
+            if(enemy1.getHealth() <= 0) {
+                enemy2.getEnemyMove();
 
-            if (playerWarrior.getSpeed() >= enemy1.getSpeed() && playerWarrior.getSpeed()
-                    >= enemy2.getSpeed()) {
-                playerWarrior.moveToUse();
-                checkHealth += checkHealth(playerWarrior, chosenTarget);
-                if (checkHealth == 2 || checkHealth >= 99) {
-                    break;
+                if (playerWarrior.getSpeed() >= enemy2.getSpeed()) {
+                    playerWarrior.moveToUse();
+                    checkHealth += checkHealth(playerWarrior, chosenTarget);
+                    if (checkHealth == 2 || checkHealth >= 99) {
+                        break;
+                    }
+                    enemy2.moveToUse();
+                    checkHealth += checkHealth(playerWarrior, enemy2);
+                    if (checkHealth == 2 || checkHealth >= 99) {
+                        break;
+                    }
+                } else {
+                    enemy2.moveToUse();
+                    checkHealth += checkHealth(playerWarrior, enemy2);
+                    if (checkHealth == 2 || checkHealth >= 99) {
+                        break;
+                    }
+                    playerWarrior.moveToUse();
+                    checkHealth += checkHealth(playerWarrior, chosenTarget);
                 }
-                enemy1.moveToUse();
-                checkHealth += checkHealth(playerWarrior, enemy1);
-                if (checkHealth == 2 || checkHealth >= 99) {
-                    break;
+            } else if (enemy2.getHealth() <= 0) {
+                enemy1.getEnemyMove();
+
+                if (playerWarrior.getSpeed() >= enemy1.getSpeed()) {
+                    playerWarrior.moveToUse();
+                    checkHealth += checkHealth(playerWarrior, chosenTarget);
+                    if (checkHealth == 2 || checkHealth >= 99) {
+                        break;
+                    }
+                    enemy1.moveToUse();
+                    checkHealth += checkHealth(playerWarrior, enemy1);
+                    if (checkHealth == 2 || checkHealth >= 99) {
+                        break;
+                    }
+                } else {
+                    enemy1.moveToUse();
+                    checkHealth += checkHealth(playerWarrior, enemy1);
+                    if (checkHealth == 2 || checkHealth >= 99) {
+                        break;
+                    }
+                    playerWarrior.moveToUse();
+                    checkHealth += checkHealth(playerWarrior, chosenTarget);
                 }
-                enemy2.moveToUse();
-                checkHealth += checkHealth(playerWarrior, enemy2);
             } else {
-                enemy1.moveToUse();
-                checkHealth += checkHealth(playerWarrior, enemy1);
-                if (checkHealth == 2 || checkHealth >= 99) {
-                    break;
+                enemy1.getEnemyMove();
+                enemy2.getEnemyMove();
+
+                if (playerWarrior.getSpeed() >= enemy1.getSpeed() && playerWarrior.getSpeed()
+                        >= enemy2.getSpeed()) {
+                    playerWarrior.moveToUse();
+                    checkHealth += checkHealth(playerWarrior, chosenTarget);
+                    if (checkHealth == 2 || checkHealth >= 99) {
+                        break;
+                    }
+                    enemy1.moveToUse();
+                    checkHealth += checkHealth(playerWarrior, enemy1);
+                    if (checkHealth == 2 || checkHealth >= 99) {
+                        break;
+                    }
+                    enemy2.moveToUse();
+                    checkHealth += checkHealth(playerWarrior, enemy2);
+                } else {
+                    enemy1.moveToUse();
+                    checkHealth += checkHealth(playerWarrior, enemy1);
+                    if (checkHealth == 2 || checkHealth >= 99) {
+                        break;
+                    }
+                    enemy2.moveToUse();
+                    checkHealth += checkHealth(playerWarrior, enemy2);
+                    if (checkHealth == 2 || checkHealth >= 99) {
+                        break;
+                    }
+                    playerWarrior.moveToUse();
+                    checkHealth += checkHealth(playerWarrior, chosenTarget);
                 }
-                enemy2.moveToUse();
-                checkHealth += checkHealth(playerWarrior, enemy2);
-                if (checkHealth == 2 || checkHealth >= 99) {
-                    break;
-                }
-                playerWarrior.moveToUse();
-                checkHealth += checkHealth(playerWarrior, chosenTarget);
             }
 
             targetChosen = false;
