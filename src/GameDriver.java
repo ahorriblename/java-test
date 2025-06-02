@@ -67,13 +67,13 @@ public class GameDriver {
         int checkHealth = 0;
 
         while (checkHealth == 0) {
-            System.out.println("Type stats to print out player and enemy statistics");
+            System.out.println("\nType stats to print out player and enemy statistics");
             listWarriorMoves();
 
             System.out.print("Pick your move: ");
             Scanner input = new Scanner(System.in);
             String move = input.nextLine();
-            move.toLowerCase();
+            move = move.toLowerCase();
 
             if (validatePlayerMove(move, playerWarrior, defaultEnemy)) {
                 playerWarrior.storeMove(move);
@@ -116,7 +116,7 @@ public class GameDriver {
         while (checkHealth < 2) {
             Scanner input = new Scanner(System.in);
 
-            System.out.println("Type stats to print out player and enemy statistics");
+            System.out.println("\nType stats to print out player and enemy statistics");
             listWarriorMoves();
 
             System.out.println();
@@ -128,7 +128,7 @@ public class GameDriver {
             while (targetChosen == false) {
                 System.out.print("\nPick your target: ");
                 String target = input.nextLine();
-                target.toLowerCase();
+                target = target.toLowerCase();
 
                 if (target.equals("goblin 1") && enemy1.getHealth() > 0) {
                     playerWarrior.setTarget(enemy1);
@@ -146,7 +146,7 @@ public class GameDriver {
 
             System.out.print("Pick your move: ");
             String move = input.nextLine();
-            move.toLowerCase();
+            move = move.toLowerCase();
 
             if (validatePlayerMove(move, playerWarrior, enemy1, enemy2)) {
                 playerWarrior.storeMove(move);
@@ -245,13 +245,13 @@ public class GameDriver {
         int checkHealth = 0;
 
         while (checkHealth == 0) {
-            System.out.println("Type stats to print out player and enemy statistics");
+            System.out.println("\nType stats to print out player and enemy statistics");
             listBarbarianMoves();
 
             System.out.print("Pick your move: ");
             Scanner input = new Scanner(System.in);
             String move = input.nextLine();
-            move.toLowerCase();
+            move = move.toLowerCase();
 
             if (validatePlayerMove(move, playerBarb, defaultEnemy)) {
                 playerBarb.storeMove(move);
@@ -286,7 +286,7 @@ public class GameDriver {
         System.out.println(" 1. Crush (2 Stamina)");
         System.out.println(" 2. ArmorUp (2 Stamina)");
         System.out.println(" 3. Rest");
-        System.out.println(" 4. HealthPotion");
+        System.out.println(" 4. HealthPotion\n");
     }
 
     static void listBarbarianMoves() {
@@ -294,7 +294,7 @@ public class GameDriver {
         System.out.println(" 1. Clobber (2 Stamina)");
         System.out.println(" 2. Enrage (1 Stamina)");
         System.out.println(" 3. Rest");
-        System.out.println(" 4. HealthPotion");
+        System.out.println(" 4. HealthPotion\n");
     }
 
     static void listRoles() {

@@ -54,8 +54,9 @@ class HealthPotion extends Potion {
         if (getUses() > 0) {
             setUses(getUses() - 1);
             getTarget().setHealth(target.getHealth() + 5);
-            System.out.println(target.getName() + " used " + getName());
-            System.out.println(target.getName() + " restored 5 health!");
+            System.out.println("\n" + target.getName() + " used " + getName());
+            System.out.println(Color.ANSI_RED + target.getName() + " restored 5 health!"
+                    + Color.ANSI_RESET);
             System.out.println(getUses() + " uses left...");
         } else {
             System.out.println("No more uses...");

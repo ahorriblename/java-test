@@ -31,9 +31,10 @@ public class Barbarian extends Player {
 
         setStamina(getStamina() - 2);
 
-        System.out.println(getName() + " clobbered " + getTarget().getName() + "!");
-        System.out.println(getName() + " dealt " + getDamage() + " damage to "
-                + getTarget().getName() + "!");
+        System.out.println("\n" + getName() + " clobbered " + getTarget().getName() + "!"
+                + Color.ANSI_GREEN + " (2 Stamina)" + Color.ANSI_RESET);
+        System.out.println(Color.ANSI_RED + getName() + " dealt " + getDamage() + " damage to "
+                + getTarget().getName() + "!" + Color.ANSI_RESET);
     }
 
     void enrage() {
@@ -42,9 +43,11 @@ public class Barbarian extends Player {
 
         setStamina(getStamina() - 1);
 
-        System.out.println(getName() + " enraged, strength increased by 2! (Now "
-                + getStrength() + ")");
-        System.out.println("Took 1 damage from reckless anger!");
+        System.out.println("\n" + Color.ANSI_PURPLE + getName() + " enraged, strength "
+                + "increased by 2! (Now " + getStrength() + ")" + Color.ANSI_RESET
+                + Color.ANSI_GREEN + " (1 Stamina)" + Color.ANSI_RESET);
+        System.out.println(Color.ANSI_RED + "Took 1 damage from reckless anger!"
+                + Color.ANSI_RESET);
     }
 
     void moveToUse() {

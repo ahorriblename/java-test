@@ -31,9 +31,10 @@ public class Warrior extends Player {
 
         setStamina(getStamina() - 2);
 
-        System.out.println(getName() + " crushed " + getTarget().getName() + "!");
-        System.out.println(getName() + " dealt " + getDamage() + " damage to "
-                + getTarget().getName() + "!");
+        System.out.println("\n" + getName() + " crushed " + getTarget().getName() + "!"
+                + Color.ANSI_GREEN + " (2 Stamina)" + Color.ANSI_RESET);
+        System.out.println(Color.ANSI_RED + getName() + " dealt " + getDamage()
+                + " damage to " + getTarget().getName() + "!" + Color.ANSI_RESET);
     }
 
     void armorUp() {
@@ -41,7 +42,9 @@ public class Warrior extends Player {
 
         setStamina(getStamina() - 2);
 
-        System.out.println(getName() + " armored up 1! (Now " + getArmor() + ")");
+        System.out.println("\n" + Color.ANSI_BLUE + getName() + " armored up 1! (Now "
+                + getArmor() + ")" + Color.ANSI_RESET + Color.ANSI_GREEN + " (2 Stamina)"
+                + Color.ANSI_RESET);
     }
 
     void moveToUse() {

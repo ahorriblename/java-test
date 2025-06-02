@@ -9,13 +9,6 @@ public class Entity {
     private String name;
     private String move;
 
-    final private String ANSI_RESET = "\u001B[0m";
-    final private String ANSI_RED = "\u001B[31m";
-    final private String ANSI_GREEN = "\u001B[32m";
-    final private String ANSI_YELLOW = "\u001B[33m";
-    final private String ANSI_BLUE = "\u001B[34m";
-    final private String ANSI_PURPLE = "\u001B[35m";
-
     /* will try 0-10 for stats
         0 = Abysmal
         1 = Atrocious
@@ -137,16 +130,19 @@ public class Entity {
             this.stamina = this.maxStamina;
         }
 
-        System.out.println(this.name + " rested...");
-        System.out.println("Stamina is now at " + this.stamina);
+        System.out.println(Color.ANSI_CYAN + "\n" + this.name + " rested..."
+                + Color.ANSI_RESET);
+        System.out.println(Color.ANSI_GREEN + "Stamina is now at " + this.stamina
+                + Color.ANSI_RESET);
     }
 
     @Override
     public String toString() {
-        return this.name + " stats\n" + ANSI_RED + " Health: " + this.health + ANSI_RESET
-                + ANSI_YELLOW +"\n Speed: " + this.speed + ANSI_RESET
-                + ANSI_PURPLE +"\n Strength: " + this.strength + ANSI_RESET
-                + ANSI_GREEN + "\n Stamina: " + this.stamina + ANSI_RESET
-                + ANSI_BLUE + "\n Armor: " + this.armor + ANSI_RESET;
+        return this.name + " stats\n"
+                + Color.ANSI_RED + " Health: " + this.health + Color.ANSI_RESET
+                + Color.ANSI_YELLOW +"\n Speed: " + this.speed + Color.ANSI_RESET
+                + Color.ANSI_PURPLE +"\n Strength: " + this.strength + Color.ANSI_RESET
+                + Color.ANSI_GREEN + "\n Stamina: " + this.stamina + Color.ANSI_RESET
+                + Color.ANSI_BLUE + "\n Armor: " + this.armor + Color.ANSI_RESET;
     }
 }

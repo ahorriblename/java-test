@@ -23,9 +23,10 @@ public class Goblin extends Enemy {
 
         setStamina(getStamina() - 1);
 
-        System.out.println(getName() + " used slashed " + getTarget().getName() + "!");
-        System.out.println(getName() + " dealt " + getDamage() + " damage to "
-                + getTarget().getName() + "!");
+        System.out.println("\n" + getName() + " slashed " + getTarget().getName() + "!"
+                + Color.ANSI_GREEN + " (1 Stamina)" + Color.ANSI_RESET);
+        System.out.println(Color.ANSI_RED + getName() + " dealt " + getDamage()
+                + " damage to " + getTarget().getName() + "!" + Color.ANSI_RESET);
     }
 
     void sneakyStab() {
@@ -36,9 +37,10 @@ public class Goblin extends Enemy {
 
         setStamina(getStamina() - 2);
 
-        System.out.println(getName() + " used sneaky stab on " + getTarget().getName() + "!");
-        System.out.println(getName() + " dealt " + getDamage() + " damage to "
-                + getTarget().getName() + "!");
+        System.out.println("\n" + getName() + " used sneaky stab on " + getTarget().getName() + "!"
+        + Color.ANSI_GREEN + " (2 Stamina)" + Color.ANSI_RESET);
+        System.out.println(Color.ANSI_RED + getName() + " dealt " + getDamage()
+                + " damage to " + getTarget().getName() + "!" + Color.ANSI_RESET);
     }
 
     void moveToUse() {
