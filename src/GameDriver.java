@@ -126,7 +126,7 @@ public class GameDriver {
             }
 
             while (targetChosen == false) {
-                System.out.print("\n Pick your target: ");
+                System.out.print("\nPick your target: ");
                 String target = input.nextLine();
                 target.toLowerCase();
 
@@ -154,7 +154,7 @@ public class GameDriver {
                 continue;
             }
 
-            if(enemy1.getHealth() <= 0) {
+            if (enemy1.getHealth() <= 0) {
                 enemy2.getEnemyMove();
 
                 if (playerWarrior.getSpeed() >= enemy2.getSpeed()) {

@@ -9,6 +9,13 @@ public class Entity {
     private String name;
     private String move;
 
+    final private String ANSI_RESET = "\u001B[0m";
+    final private String ANSI_RED = "\u001B[31m";
+    final private String ANSI_GREEN = "\u001B[32m";
+    final private String ANSI_YELLOW = "\u001B[33m";
+    final private String ANSI_BLUE = "\u001B[34m";
+    final private String ANSI_PURPLE = "\u001B[35m";
+
     /* will try 0-10 for stats
         0 = Abysmal
         1 = Atrocious
@@ -126,7 +133,7 @@ public class Entity {
     void rest() {
         this.stamina += (this.maxStamina / 2);
 
-        if(this.maxStamina < this.stamina) {
+        if (this.maxStamina < this.stamina) {
             this.stamina = this.maxStamina;
         }
 
@@ -136,8 +143,10 @@ public class Entity {
 
     @Override
     public String toString() {
-        return this.name + " stats\n Health: " + this.health + "\n Speed: " + this.speed
-                + "\n Strength: " + this.strength + "\n Stamina: "
-                + this.stamina + "\n Armor: " + this.armor;
+        return this.name + " stats\n" + ANSI_RED + " Health: " + this.health + ANSI_RESET
+                + ANSI_YELLOW +"\n Speed: " + this.speed + ANSI_RESET
+                + ANSI_PURPLE +"\n Strength: " + this.strength + ANSI_RESET
+                + ANSI_GREEN + "\n Stamina: " + this.stamina + ANSI_RESET
+                + ANSI_BLUE + "\n Armor: " + this.armor + ANSI_RESET;
     }
 }

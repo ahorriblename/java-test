@@ -51,11 +51,11 @@ public class Goblin extends Enemy {
     }
 
     void getEnemyMove() {
-        if(getTarget().getArmor() > 0 && getStamina() >= 2) {
+        if (getTarget().getArmor() > 0 && getStamina() >= 2) {
             storeMove("sneakystab");
         } else if (getTarget().getArmor() < 0 || getStamina() >= 1) {
             storeMove("slash");
-        } else if(getStamina() == 0) {
+        } else if (getStamina() == 0) {
             storeMove("rest");
         } else {
             storeMove("rest");
