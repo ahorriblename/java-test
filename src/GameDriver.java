@@ -68,7 +68,7 @@ public class GameDriver {
 
         while (checkHealth == 0) {
             System.out.println("\nType stats to print out player and enemy statistics");
-            listWarriorMoves();
+            Warrior.listMoves();
 
             System.out.print("Pick your move: ");
             Scanner input = new Scanner(System.in);
@@ -118,7 +118,7 @@ public class GameDriver {
             Scanner input = new Scanner(System.in);
 
             System.out.println("\nType stats to print out player and enemy statistics");
-            listWarriorMoves();
+            Warrior.listMoves();
 
             System.out.println();
             if (targetChosen) {
@@ -247,7 +247,7 @@ public class GameDriver {
 
         while (checkHealth == 0) {
             System.out.println("\nType stats to print out player and enemy statistics");
-            listBarbarianMoves();
+            Barbarian.listMoves();
 
             System.out.print("Pick your move: ");
             Scanner input = new Scanner(System.in);
@@ -280,22 +280,6 @@ public class GameDriver {
                 checkHealth = checkHealth(playerBarb, defaultEnemy);
             }
         }
-    }
-
-    static void listWarriorMoves() {
-        System.out.println("List of moves");
-        System.out.println(" 1. Crush (2 Stamina)");
-        System.out.println(" 2. ArmorUp (2 Stamina)");
-        System.out.println(" 3. Rest");
-        System.out.println(" 4. HealthPotion\n");
-    }
-
-    static void listBarbarianMoves() {
-        System.out.println("List of moves");
-        System.out.println(" 1. Clobber (2 Stamina)");
-        System.out.println(" 2. Enrage (1 Stamina)");
-        System.out.println(" 3. Rest");
-        System.out.println(" 4. HealthPotion\n");
     }
 
     static void listRoles() {

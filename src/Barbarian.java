@@ -80,4 +80,12 @@ public class Barbarian extends Player {
             return false;
         }
     }
+
+    static void listMoves() {
+        System.out.println("List of moves");
+        System.out.println(" 1. Clobber (2 Stamina)");
+        System.out.println(" 2. Enrage (1 Stamina)");
+        System.out.println(" 3. Rest");
+        System.out.println(" 4. HealthPotion\n");
+    }
 }
