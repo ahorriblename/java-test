@@ -59,4 +59,25 @@ public class Barbarian extends Player {
             default -> System.out.print("No move");
         }
     }
+
+    boolean validateMove(String move) {
+        // false continues loop
+
+        if (move.equals("enrage") && this.getStamina() >= 1) {
+            return true;
+        } else if (move.equals("clobber") && this.getStamina() >= 2) {
+            return true;
+        } else if (move.equals("stats")) {
+            System.out.println(getTarget());
+            System.out.println(this);
+            return false;
+        } else if (move.equals("rest")) {
+            return true;
+        } else if (move.equals("healthpotion")) {
+            return true;
+        } else {
+            System.out.println("enter valid move");
+            return false;
+        }
+    }
 }
