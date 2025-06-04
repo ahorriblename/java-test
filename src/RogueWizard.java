@@ -63,7 +63,7 @@ public class RogueWizard extends Enemy {
 
         System.out.println("\n" + getName() + " fired a magic missile at " + target.getName()
                 + "!" + Color.ANSI_CYAN + " (5 magic)" + Color.ANSI_RESET);
-        System.out.println(Color.ANSI_RED + getName() + " dealt " + getDamage() + "to "
+        System.out.println(Color.ANSI_RED + getName() + " dealt " + getDamage() + " damage to "
                 + target.getName() + "!" + Color.ANSI_RESET);
     }
 

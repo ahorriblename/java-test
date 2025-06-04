@@ -126,6 +126,10 @@ public class Entity {
     void rest() {
         this.stamina += (this.maxStamina / 2);
 
+        if(this.stamina == 0) {
+            this.stamina = 1;
+        }
+
         if (this.maxStamina < this.stamina) {
             this.stamina = this.maxStamina;
         }

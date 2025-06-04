@@ -38,6 +38,11 @@ public class GameDriver {
         } else {
             playerBarb.setName(getPlayerName());
             playBarbarianRound1(playerBarb, defaultEnemy);
+
+            RogueWizard enemyWizard = new RogueWizard();
+            enemyWizard.setName("Hostile Wizard");
+
+            playBarbarianRound2(playerBarb, enemyWizard);
         }
     }
 
@@ -278,6 +283,50 @@ public class GameDriver {
                 }
                 playerBarb.moveToUse();
                 checkHealth = checkHealth(playerBarb, defaultEnemy);
+            }
+        }
+    }
+
+    static void playBarbarianRound2(Barbarian playerBarb, RogueWizard enemy) {
+        System.out.println("You see a wizard");
+
+        enemy.setTarget(playerBarb);
+        playerBarb.setTarget(enemy);
+        int checkHealth = 0;
+
+        while (checkHealth == 0) {
+            System.out.println("\nType stats to print out player and enemy statistics");
+            Barbarian.listMoves();
+
+            System.out.print("Pick your move: ");
+            Scanner input = new Scanner(System.in);
+            String move = input.nextLine();
+            move = move.toLowerCase();
+
+            if (playerBarb.validateMove(move)) {
+                playerBarb.storeMove(move);
+            } else {
+                continue;
+            }
+
+            enemy.getEnemyMove();
+
+            if (playerBarb.getSpeed() >= enemy.getSpeed()) {
+                playerBarb.moveToUse();
+                checkHealth = checkHealth(playerBarb, enemy);
+                if (checkHealth >= 1) {
+                    break;
+                }
+                enemy.moveToUse();
+                checkHealth = checkHealth(playerBarb, enemy);
+            } else {
+                enemy.moveToUse();
+                checkHealth = checkHealth(playerBarb, enemy);
+                if (checkHealth >= 1) {
+                    break;
+                }
+                playerBarb.moveToUse();
+                checkHealth = checkHealth(playerBarb, enemy);
             }
         }
     }
