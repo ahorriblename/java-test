@@ -54,10 +54,36 @@ class HealthPotion extends Potion {
         if (getUses() > 0) {
             setUses(getUses() - 1);
             getTarget().setHealth(target.getHealth() + 5);
+
             System.out.println("\n" + target.getName() + " used " + getName());
             System.out.println(Color.ANSI_RED + target.getName() + " restored 5 health!"
                     + Color.ANSI_RESET);
             System.out.println(getUses() + " uses left...");
+        } else {
+            System.out.println("No more uses...");
+        }
+    }
+}
+
+class MagicPotion extends Potion {
+    private RogueWizard target;
+
+    MagicPotion() {
+        super("Magic Potion", 1, null);
+    }
+
+    MagicPotion(String name, int uses, Entity target) {
+        super(name, uses, target);
+    }
+
+    void use() {
+        if (getUses() > 0) {
+            setUses(getUses() - 1);
+            this.target.setMagic(this.target.getMagic() + 5);
+
+            System.out.println("\n" + this.target.getName() + " used " + getName());
+            System.out.println(Color.ANSI_CYAN + target.getName() + " restored 5 magic!"
+                    + Color.ANSI_RESET);
         } else {
             System.out.println("No more uses...");
         }

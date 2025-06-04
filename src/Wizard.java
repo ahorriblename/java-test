@@ -1,10 +1,9 @@
-public class RogueWizard extends Enemy {
+public class Wizard extends Entity{
     private int magic;
     private int maxMagic;
     private int magicAbility;
-    private MagicPotion magicPotion;
 
-    RogueWizard() {
+    Wizard() {
         super();
         setHealth(10);
         setArmor(0);
@@ -17,15 +16,11 @@ public class RogueWizard extends Enemy {
         setMagic(5);
         setMaxMagic(5);
         setMagicAbility(5);
-
-        this.magicPotion = new MagicPotion("Magic Potion", 1, this);
     }
 
     RogueWizard(int health, int speed, int strength, int stamina, int armor, int maxStamina,
                 Player target) {
         super(health, speed, strength, stamina, armor, maxStamina, target);
-
-        this.magicPotion = new MagicPotion("Magic Potion", 1, this);
     }
 
     void setMagic(int magic) {
@@ -102,7 +97,6 @@ public class RogueWizard extends Enemy {
             case "fireball" -> fireBall();
             case "slash" -> slash();
             case "rest" -> rest();
-            case "magicpotion" -> this.magicPotion.use();
             default -> System.out.println("No move!");
         }
     }
@@ -115,8 +109,6 @@ public class RogueWizard extends Enemy {
             storeMove("magicmissile");
         } else if (getMagic() >= 2) {
             storeMove("fireball");
-        } else if (getMagic() < 2 && this.magicPotion.getUses() >= 1) {
-            storeMove("magicpotion");
         } else if (getStamina() >= 1) {
             storeMove("slash");
         } else {
