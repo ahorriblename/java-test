@@ -13,6 +13,8 @@ public class Entity {
     private int maxMagic;
     private int magicAbility;
 
+    private boolean isDead;
+
     Entity() {
         this.health = 10;
         this.speed = 5;
@@ -116,6 +118,25 @@ public class Entity {
 
     int getMagicAbility() {
         return this.magicAbility;
+    }
+
+    boolean isDead() {
+        if (this.health <= 0) {
+            this.isDead = true;
+            System.out.println(this.name + " is dead!");
+            return true;
+        } else {
+            this.isDead = false;
+            return false;
+        }
+    }
+
+    boolean getIsDead() {
+        return this.isDead;
+    }
+
+    boolean getDeadStatus() {
+        return this.isDead;
     }
 
     void setDamage(int damage) {
