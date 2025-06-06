@@ -10,12 +10,18 @@ public class Warrior extends Player {
         setStamina(5);
         setMaxStamina(5);
         setStrength(5);
+
+        setMagic(0);
+        setMaxMagic(0);
+        setMagicAbility(0);
+
         this.healthPotion = new HealthPotion("Health Potion", 1, this);
     }
 
     public Warrior(int health, int speed, int strength, int stamina, int armor, int maxStamina,
-                   Enemy target) {
-        super(health, speed, strength, stamina, armor, maxStamina, target);
+                   int magic, int maxMagic, int magicAbility, Enemy target) {
+        super(health, speed, strength, stamina, armor, maxStamina, magic, maxMagic,
+                magicAbility, target);
         this.healthPotion = new HealthPotion("Health Potion", 1, this);
     }
 

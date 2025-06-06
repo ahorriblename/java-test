@@ -1,7 +1,4 @@
 public class RogueWizard extends Enemy {
-    private int magic;
-    private int maxMagic;
-    private int magicAbility;
     private MagicPotion magicPotion;
 
     RogueWizard() {
@@ -22,34 +19,11 @@ public class RogueWizard extends Enemy {
     }
 
     RogueWizard(int health, int speed, int strength, int stamina, int armor, int maxStamina,
-                Player target) {
-        super(health, speed, strength, stamina, armor, maxStamina, target);
+                int magic, int maxMagic, int magicAbility ,Player target) {
+        super(health, speed, strength, stamina, armor, maxStamina, magic, maxMagic,
+                magicAbility, target);
 
         this.magicPotion = new MagicPotion("Magic Potion", 1, this);
-    }
-
-    void setMagic(int magic) {
-        this.magic = magic;
-    }
-
-    int getMagic() {
-        return this.magic;
-    }
-
-    void setMaxMagic(int maxMagic) {
-        this.maxMagic = maxMagic;
-    }
-
-    int getMaxMagic() {
-        return this.maxMagic;
-    }
-
-    void setMagicAbility(int magicAbility) {
-        this.magicAbility = magicAbility;
-    }
-
-    int getMagicAbility() {
-        return this.magicAbility;
     }
 
     void magicMissile() {

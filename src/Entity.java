@@ -9,36 +9,33 @@ public class Entity {
     private String name;
     private String move;
 
-    /* will try 0-10 for stats
-        0 = Abysmal
-        1 = Atrocious
-        2 = Weak
-        3 = Bad
-        4 = Below Average
-        5 = Okay
-        6 = Above Average
-        7 = Great
-        8 = Epic
-        9 = Astounding
-        10 = Legendary
-     */
+    private int magic;
+    private int maxMagic;
+    private int magicAbility;
 
     Entity() {
-        this.health = 100;
+        this.health = 10;
         this.speed = 5;
         this.strength = 5;
         this.stamina = 5;
         this.maxStamina = 5;
         this.armor = 5;
+        this.magic = 5;
+        this.maxMagic = 5;
+        this.magicAbility = 5;
     }
 
-    Entity(int health, int speed, int strength, int stamina, int armor, int maxStamina) {
+    Entity(int health, int speed, int strength, int stamina, int armor, int maxStamina,
+           int magic, int maxMagic, int magicAbility) {
         this.health = health;
         this.speed = speed;
         this.strength = strength;
         this.stamina = stamina;
         this.maxStamina = maxStamina;
         this.armor = armor;
+        this.magic = magic;
+        this.magicAbility = maxMagic;
+        this.maxMagic = magicAbility;
     }
 
     int getHealth() {
@@ -97,6 +94,30 @@ public class Entity {
         this.name = name;
     }
 
+    void setMagic(int magic) {
+        this.magic = magic;
+    }
+
+    int getMagic() {
+        return this.magic;
+    }
+
+    void setMaxMagic(int maxMagic) {
+        this.maxMagic = maxMagic;
+    }
+
+    int getMaxMagic() {
+        return this.maxMagic;
+    }
+
+    void setMagicAbility(int magicAbility) {
+        this.magicAbility = magicAbility;
+    }
+
+    int getMagicAbility() {
+        return this.magicAbility;
+    }
+
     void setDamage(int damage) {
         this.damage = damage;
     }
@@ -126,7 +147,7 @@ public class Entity {
     void rest() {
         this.stamina += (this.maxStamina / 2);
 
-        if(this.stamina == 0) {
+        if (this.stamina == 0) {
             this.stamina = 1;
         }
 
@@ -144,9 +165,12 @@ public class Entity {
     public String toString() {
         return this.name + " stats\n"
                 + Color.ANSI_RED + " Health: " + this.health + Color.ANSI_RESET
-                + Color.ANSI_YELLOW +"\n Speed: " + this.speed + Color.ANSI_RESET
-                + Color.ANSI_PURPLE +"\n Strength: " + this.strength + Color.ANSI_RESET
-                + Color.ANSI_GREEN + "\n Stamina: " + this.stamina + Color.ANSI_RESET
-                + Color.ANSI_BLUE + "\n Armor: " + this.armor + Color.ANSI_RESET;
+                + Color.ANSI_YELLOW + "\n Speed: " + this.speed + Color.ANSI_RESET
+                + Color.ANSI_PURPLE + "\n Strength: " + this.strength + Color.ANSI_RESET
+                + Color.ANSI_GREEN + "\n Stamina: " + this.stamina
+                + "\n Max Stamina: " + this.maxStamina + Color.ANSI_RESET
+                + Color.ANSI_BLUE + "\n Armor: " + this.armor + Color.ANSI_RESET
+                + Color.ANSI_CYAN + "\n Magic: " + this.magic + "\n Max Magic: "
+                + this.maxMagic + "\n Magic Ability: " + this.magicAbility + Color.ANSI_RESET;
     }
 }

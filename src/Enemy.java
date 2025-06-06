@@ -5,14 +5,10 @@ public class Enemy extends Entity {
         super();
     }
 
-    Enemy(Player target) {
-        super();
-        this.targetPlayer = target;
-    }
-
     Enemy(int health, int speed, int strength, int stamina, int armor, int maxStamina,
-          Player target) {
-        super(health, speed, strength, stamina, armor, maxStamina);
+          int magic, int maxMagic, int magicAbility, Player target) {
+        super(health, speed, strength, stamina, armor, maxStamina, magic, maxMagic,
+                magicAbility);
         this.targetPlayer = target;
     }
 
