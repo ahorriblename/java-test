@@ -95,20 +95,8 @@ public class GameDriver {
                 continue;
             }
 
-            defaultEnemy.getEnemyMove();
-
-            if (playerWarrior.getSpeed() >= defaultEnemy.getSpeed()) {
-                playerWarrior.moveToUse();
-                if (playerWarrior.isDead() || defaultEnemy.isDead()) {
-                    break;
-                }
-                defaultEnemy.moveToUse();
-            } else {
-                defaultEnemy.moveToUse();
-                if (playerWarrior.isDead() || defaultEnemy.isDead()) {
-                    break;
-                }
-                playerWarrior.moveToUse();
+            if (!runMoves(playerWarrior, defaultEnemy)) {
+                break;
             }
         }
     }
@@ -160,70 +148,16 @@ public class GameDriver {
             }
 
             if (enemy1.isDead()) {
-                enemy2.getEnemyMove();
-
-                if (playerWarrior.getSpeed() >= enemy2.getSpeed()) {
-                    playerWarrior.moveToUse();
-                    if (playerWarrior.isDead() || enemy2.isDead()) {
-                        break;
-                    }
-
-                    enemy2.moveToUse();
-                } else {
-                    enemy2.moveToUse();
-                    if (playerWarrior.isDead() || enemy2.isDead()) {
-                        break;
-                    }
-
-                    playerWarrior.moveToUse();
+                if (!runMoves(playerWarrior, enemy2)) {
+                    break;
                 }
             } else if (enemy2.isDead()) {
-                enemy1.getEnemyMove();
-
-                if (playerWarrior.getSpeed() >= enemy1.getSpeed()) {
-                    playerWarrior.moveToUse();
-                    if (playerWarrior.isDead() || enemy1.isDead()) {
-                        break;
-                    }
-
-                    enemy1.moveToUse();
-                } else {
-                    enemy1.moveToUse();
-                    if (playerWarrior.isDead() || enemy1.isDead()) {
-                        break;
-                    }
-
-                    playerWarrior.moveToUse();
+                if (!runMoves(playerWarrior, enemy1)) {
+                    break;
                 }
             } else {
-                enemy1.getEnemyMove();
-                enemy2.getEnemyMove();
-
-                if (playerWarrior.getSpeed() >= enemy1.getSpeed() && playerWarrior.getSpeed()
-                        >= enemy2.getSpeed()) {
-                    playerWarrior.moveToUse();
-                    if (playerWarrior.isDead() || (enemy1.isDead() && enemy2.isDead())) {
-                        break;
-                    }
-
-                    enemy1.moveToUse();
-                    if (playerWarrior.isDead() || (enemy1.isDead() && enemy2.isDead())) {
-                        break;
-                    }
-
-                    enemy2.moveToUse();
-                } else {
-                    enemy1.moveToUse();
-                    if (playerWarrior.isDead() || (enemy1.isDead() && enemy2.isDead())) {
-                        break;
-                    }
-
-                    enemy2.moveToUse();
-                    if (playerWarrior.isDead() || (enemy1.isDead() && enemy2.isDead())) {
-                        break;
-                    }
-
-                    playerWarrior.moveToUse();
+                if (!runMoves(playerWarrior, enemy1, enemy2)) {
+                    break;
                 }
             }
 
@@ -251,22 +185,8 @@ public class GameDriver {
                 continue;
             }
 
-            defaultEnemy.getEnemyMove();
-
-            if (playerBarb.getSpeed() >= defaultEnemy.getSpeed()) {
-                playerBarb.moveToUse();
-                if (playerBarb.isDead() || defaultEnemy.isDead()) {
-                    break;
-                }
-
-                defaultEnemy.moveToUse();
-            } else {
-                defaultEnemy.moveToUse();
-                if (playerBarb.isDead() || defaultEnemy.isDead()) {
-                    break;
-                }
-
-                playerBarb.moveToUse();
+            if (!runMoves(playerBarb, defaultEnemy)) {
+                break;
             }
         }
     }
@@ -292,23 +212,103 @@ public class GameDriver {
                 continue;
             }
 
-            enemy.getEnemyMove();
-
-            if (playerBarb.getSpeed() >= enemy.getSpeed()) {
-                playerBarb.moveToUse();
-                if (playerBarb.isDead() || enemy.isDead()) {
-                    break;
-                }
-
-                enemy.moveToUse();
-            } else {
-                enemy.moveToUse();
-                if (playerBarb.isDead() || enemy.isDead()) {
-                    break;
-                }
-
-                playerBarb.moveToUse();
+            if (!runMoves(playerBarb, enemy)) {
+                break;
             }
         }
+    }
+
+    static boolean runMoves(Warrior player, Goblin enemy) {
+        enemy.getEnemyMove();
+
+        if (player.getSpeed() >= enemy.getSpeed()) {
+            player.moveToUse();
+            if (player.isDead() || enemy.isDead()) {
+                return false;
+            }
+            enemy.moveToUse();
+        } else {
+            enemy.moveToUse();
+            if (player.isDead() || enemy.isDead()) {
+                return false;
+            }
+            player.moveToUse();
+        }
+
+        return true;
+    }
+
+    static boolean runMoves(Barbarian player, Goblin enemy) {
+        enemy.getEnemyMove();
+
+        if (player.getSpeed() >= enemy.getSpeed()) {
+            player.moveToUse();
+            if (player.isDead() || enemy.isDead()) {
+                return false;
+            }
+            enemy.moveToUse();
+        } else {
+            enemy.moveToUse();
+            if (player.isDead() || enemy.isDead()) {
+                return false;
+            }
+            player.moveToUse();
+        }
+
+        return true;
+    }
+
+    static boolean runMoves(Barbarian player, RogueWizard enemy) {
+        enemy.getEnemyMove();
+
+        if (player.getSpeed() >= enemy.getSpeed()) {
+            player.moveToUse();
+            if (player.isDead() || enemy.isDead()) {
+                return false;
+            }
+            enemy.moveToUse();
+        } else {
+            enemy.moveToUse();
+            if (player.isDead() || enemy.isDead()) {
+                return false;
+            }
+            player.moveToUse();
+        }
+
+        return true;
+    }
+
+    static boolean runMoves(Warrior player, Goblin enemy1, Goblin enemy2) {
+        enemy1.getEnemyMove();
+        enemy2.getEnemyMove();
+
+        if (player.getSpeed() >= enemy1.getSpeed() && player.getSpeed()
+                >= enemy2.getSpeed()) {
+            player.moveToUse();
+            if (player.isDead() || (enemy1.isDead() && enemy2.isDead())) {
+                return false;
+            }
+
+            enemy1.moveToUse();
+            if (player.isDead() || (enemy1.isDead() && enemy2.isDead())) {
+                return false;
+            }
+
+            enemy2.moveToUse();
+        } else {
+            enemy1.moveToUse();
+            if (player.isDead() || (enemy1.isDead() && enemy2.isDead())) {
+                return false;
+            }
+
+            enemy2.moveToUse();
+            if (player.isDead() || (enemy1.isDead() && enemy2.isDead())) {
+                return false;
+            }
+
+            player.moveToUse();
+        }
+
+        return true;
     }
 }
