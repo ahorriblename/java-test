@@ -8,6 +8,7 @@ public class Entity {
     private int armor;
     private String name;
     private String move;
+    private int turn = 0;
 
     private int magic;
     private int maxMagic;
@@ -110,6 +111,18 @@ public class Entity {
 
     int getMaxMagic() {
         return this.maxMagic;
+    }
+
+    void setTurn(int turn) {
+        this.turn = turn;
+    }
+
+    int getTurn() {
+        return this.turn;
+    }
+
+    void incrementTurn() {
+        this.turn++;
     }
 
     void setMagicAbility(int magicAbility) {

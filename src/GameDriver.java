@@ -81,6 +81,10 @@ public class GameDriver {
         playerWarrior.setTarget(defaultEnemy);
 
         while (!playerWarrior.isDead() && !defaultEnemy.isDead()) {
+            playerWarrior.incrementTurn();
+            defaultEnemy.incrementTurn();
+
+            System.out.println("\nIt's turn " + playerWarrior.getTurn());
             System.out.println("\nType stats to print out player and enemy statistics");
             Warrior.listMoves();
 
@@ -112,6 +116,12 @@ public class GameDriver {
 
         while (!playerWarrior.isDead() && (!enemy1.isDead()) || !enemy2.isDead()) {
             Scanner input = new Scanner(System.in);
+
+            playerWarrior.incrementTurn();
+            enemy1.incrementTurn();
+            enemy2.incrementTurn();
+
+            System.out.println("\nIt's turn " + playerWarrior.getTurn());
 
             System.out.println("\nType stats to print out player and enemy statistics");
             Warrior.listMoves();
@@ -171,6 +181,11 @@ public class GameDriver {
         playerBarb.setTarget(defaultEnemy);
 
         while (!playerBarb.isDead() && !defaultEnemy.isDead()) {
+            playerBarb.incrementTurn();
+            defaultEnemy.incrementTurn();
+
+            System.out.println("\nIt's turn " + playerBarb.getTurn());
+
             System.out.println("\nType stats to print out player and enemy statistics");
             Barbarian.listMoves();
 
@@ -198,6 +213,11 @@ public class GameDriver {
         playerBarb.setTarget(enemy);
 
         while (!playerBarb.isDead() && !enemy.isDead()) {
+            playerBarb.incrementTurn();
+            enemy.incrementTurn();
+
+            System.out.println("\nIt's turn " + playerBarb.getTurn());
+
             System.out.println("\nType stats to print out player and enemy statistics");
             Barbarian.listMoves();
 
