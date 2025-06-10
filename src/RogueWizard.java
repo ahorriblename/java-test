@@ -4,12 +4,12 @@ public class RogueWizard extends Enemy {
     RogueWizard() {
         super();
         setHealth(10);
-        setArmor(0);
         setSpeed(5);
-        setName("Wizard");
+        setStrength(1);
         setStamina(1);
         setMaxStamina(1);
-        setStrength(1);
+        setArmor(0);
+        setName("Wizard");
 
         setMagic(5);
         setMaxMagic(5);
@@ -18,9 +18,9 @@ public class RogueWizard extends Enemy {
         this.magicPotion = new MagicPotion("Magic Potion", 1, this);
     }
 
-    RogueWizard(int health, int speed, int strength, int stamina, int armor, int maxStamina,
-                int magic, int maxMagic, int magicAbility ,Player target) {
-        super(health, speed, strength, stamina, armor, maxStamina, magic, maxMagic,
+    RogueWizard(int health, int speed, int strength, int stamina, int maxStamina, int armor,
+                String name, int magic, int maxMagic, int magicAbility ,Player target) {
+        super(health, speed, strength, stamina, maxStamina, armor, name, magic, maxMagic,
                 magicAbility, target);
 
         this.magicPotion = new MagicPotion("Magic Potion", 1, this);

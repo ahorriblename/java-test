@@ -2,21 +2,21 @@ public class Goblin extends Enemy {
     public Goblin() {
         super();
         setHealth(10);
-        setArmor(2);
         setSpeed(5);
-        setName("Goblin");
+        setStrength(2);
         setStamina(2);
         setMaxStamina(2);
-        setStrength(2);
+        setArmor(2);
+        setName("Goblin");
 
         setMagic(0);
         setMaxMagic(0);
         setMagicAbility(0);
     }
 
-    public Goblin(int health, int speed, int strength, int stamina, int armor, int maxStamina,
-                  int magic, int maxMagic, int magicAbility, Player target) {
-        super(health, speed, strength, stamina, armor, maxStamina, magic, maxMagic,
+    public Goblin(int health, int speed, int strength, int stamina, int maxStamina, int armor,
+                  String name, int magic, int maxMagic, int magicAbility, Player target) {
+        super(health, speed, strength, stamina, maxStamina, armor, name, magic, maxMagic,
                 magicAbility, target);
     }
 

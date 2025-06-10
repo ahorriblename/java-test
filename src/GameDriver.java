@@ -26,12 +26,11 @@ public class GameDriver {
             playWarriorRound1(playerWarrior, defaultEnemy);
 
             if (!playerWarrior.getIsDead()) {
-                Goblin bigGoblin = new Goblin();
-                bigGoblin.setName("Big Goblin");
-                bigGoblin.setStrength(4);
-                bigGoblin.setHealth(12);
+                Goblin bigGoblin = new Goblin(12, 5, 4, 2, 2, 4, "Big Goblin", 0, 0, 0,
+                        playerWarrior);
 
-                Goblin newGoblin = new Goblin();
+                Goblin newGoblin = new Goblin(10, 5, 2, 2, 2, 2, "Goblin", 0, 0, 0,
+                        playerWarrior);
 
                 boolean targetChosen = false;
 

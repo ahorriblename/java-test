@@ -4,12 +4,12 @@ public class Warrior extends Player {
     public Warrior() {
         super();
         setHealth(10);
-        setArmor(5);
         setSpeed(3);
-        setName("Warrior");
+        setStrength(5);
         setStamina(5);
         setMaxStamina(5);
-        setStrength(5);
+        setArmor(5);
+        setName("Warrior");
 
         setMagic(0);
         setMaxMagic(0);
@@ -18,10 +18,11 @@ public class Warrior extends Player {
         this.healthPotion = new HealthPotion("Health Potion", 1, this);
     }
 
-    public Warrior(int health, int speed, int strength, int stamina, int armor, int maxStamina,
-                   int magic, int maxMagic, int magicAbility, Enemy target) {
-        super(health, speed, strength, stamina, armor, maxStamina, magic, maxMagic,
+    public Warrior(int health, int speed, int strength, int stamina, int maxStamina, int armor,
+                   String name, int magic, int maxMagic, int magicAbility, Enemy target) {
+        super(health, speed, strength, stamina, maxStamina, armor, name, magic, maxMagic,
                 magicAbility, target);
+
         this.healthPotion = new HealthPotion("Health Potion", 1, this);
     }
 

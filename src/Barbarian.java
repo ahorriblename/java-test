@@ -4,12 +4,12 @@ public class Barbarian extends Player {
     Barbarian() {
         super();
         setHealth(12);
-        setArmor(0);
         setSpeed(6);
-        setName("Barbarian");
+        setStrength(6);
         setStamina(5);
         setMaxStamina(5);
-        setStrength(6);
+        setArmor(0);
+        setName("Barbarian");
 
         setMagic(0);
         setMaxMagic(0);
@@ -18,10 +18,11 @@ public class Barbarian extends Player {
         this.healthPotion = new HealthPotion("Health Potion+", 2, this);
     }
 
-    Barbarian(int health, int speed, int strength, int stamina, int armor, int maxStamina,
-              int magic, int maxMagic, int magicAbility, Enemy target) {
-        super(health, speed, strength, stamina, armor, maxStamina, magic, maxMagic,
+    Barbarian(int health, int speed, int strength, int stamina, int maxStamina, int armor,
+              String name, int magic, int maxMagic, int magicAbility, Enemy target) {
+        super(health, speed, strength, stamina, maxStamina, armor, name, magic, maxMagic,
                 magicAbility, target);
+
         this.healthPotion = new HealthPotion("Health Potion+", 2, this);
     }
 

@@ -28,14 +28,15 @@ public class Entity {
         this.magicAbility = 5;
     }
 
-    Entity(int health, int speed, int strength, int stamina, int armor, int maxStamina,
-           int magic, int maxMagic, int magicAbility) {
+    Entity(int health, int speed, int strength, int stamina, int maxStamina, int armor,
+           String name, int magic, int maxMagic, int magicAbility) {
         this.health = health;
         this.speed = speed;
         this.strength = strength;
         this.stamina = stamina;
         this.maxStamina = maxStamina;
         this.armor = armor;
+        this.name = name;
         this.magic = magic;
         this.magicAbility = maxMagic;
         this.maxMagic = magicAbility;
@@ -145,10 +146,6 @@ public class Entity {
     }
 
     boolean getIsDead() {
-        return this.isDead;
-    }
-
-    boolean getDeadStatus() {
         return this.isDead;
     }
 

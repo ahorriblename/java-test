@@ -5,9 +5,9 @@ public class Player extends Entity {
         super();
     }
 
-    Player(int health, int speed, int strength, int stamina, int armor, int maxStamina,
-           int magic, int maxMagic, int magicAbility, Enemy target) {
-        super(health, speed, strength, stamina, armor, maxStamina, magic, maxMagic,
+    Player(int health, int speed, int strength, int stamina, int maxStamina, int armor,
+           String name, int magic, int maxMagic, int magicAbility, Enemy target) {
+        super(health, speed, strength, stamina, maxStamina, armor, name, magic, maxMagic,
                 magicAbility);
         this.targetEnemy = target;
     }
