@@ -8,7 +8,7 @@ public class Entity {
     private int armor;
     private String name;
     private String move;
-    private int turn = 0;
+    private int turn = 1;
 
     private int magic;
     private int maxMagic;
