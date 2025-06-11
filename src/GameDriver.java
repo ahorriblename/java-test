@@ -25,7 +25,7 @@ public class GameDriver {
             playerWarrior.setName(getPlayerName());
             playWarriorRound1(playerWarrior, defaultEnemy);
 
-            if (!playerWarrior.getIsDead()) {
+            if (playerWarrior.isAlive()) {
                 Goblin bigGoblin = new Goblin(12, 5, 4, 2, 2, 4, "Big Goblin", 0, 0, 0,
                         playerWarrior);
 
@@ -40,7 +40,7 @@ public class GameDriver {
             playerBarb.setName(getPlayerName());
             playBarbarianRound1(playerBarb, defaultEnemy);
 
-            if (!playerBarb.getIsDead()) {
+            if (playerBarb.isAlive()) {
                 RogueWizard enemyWizard = new RogueWizard();
                 enemyWizard.setName("Hostile Wizard");
 
@@ -243,7 +243,7 @@ public class GameDriver {
                 return false;
             }
 
-            if (!enemy.getIsDead()) {
+            if (enemy.isAlive()) {
                 enemy.moveToUse();
             }
         } else {
@@ -252,7 +252,7 @@ public class GameDriver {
                 return false;
             }
 
-            if(!player.getIsDead()) {
+            if (player.isAlive()) {
                 player.moveToUse();
             }
         }
@@ -271,14 +271,14 @@ public class GameDriver {
                 return false;
             }
 
-            if (!enemy1.getIsDead()) {
+            if (enemy1.isAlive()) {
                 enemy1.moveToUse();
             }
             if (player.isDead() || (enemy1.isDead() && enemy2.isDead())) {
                 return false;
             }
 
-            if(!enemy2.getIsDead()) {
+            if (enemy2.isAlive()) {
                 enemy2.moveToUse();
             }
         } else {
@@ -287,14 +287,14 @@ public class GameDriver {
                 return false;
             }
 
-            if(!enemy2.getIsDead()) {
+            if (enemy2.isAlive()) {
                 enemy2.moveToUse();
             }
             if (player.isDead() || (enemy1.isDead() && enemy2.isDead())) {
                 return false;
             }
 
-            if(!player.getIsDead()) {
+            if (player.isAlive()) {
                 player.moveToUse();
             }
         }
@@ -311,7 +311,7 @@ public class GameDriver {
                 return false;
             }
 
-            if(!enemy.getIsDead()) {
+            if (enemy.isAlive()) {
                 enemy.moveToUse();
             }
         } else {
@@ -320,7 +320,7 @@ public class GameDriver {
                 return false;
             }
 
-            if (!player.getIsDead()) {
+            if (player.isAlive()) {
                 player.moveToUse();
             }
         }
@@ -337,7 +337,7 @@ public class GameDriver {
                 return false;
             }
 
-            if (!enemy.getIsDead()) {
+            if (enemy.isAlive()) {
                 enemy.moveToUse();
             }
         } else {
@@ -346,7 +346,7 @@ public class GameDriver {
                 return false;
             }
 
-            if (!player.getIsDead()) {
+            if (player.isAlive()) {
                 player.moveToUse();
             }
         }
@@ -365,14 +365,14 @@ public class GameDriver {
                 return false;
             }
 
-            if(!enemy1.getIsDead()) {
+            if (enemy1.isAlive()) {
                 enemy1.moveToUse();
             }
             if (player.isDead() || (enemy1.isDead() && enemy2.isDead())) {
                 return false;
             }
 
-            if (!enemy2.getIsDead()) {
+            if (enemy2.isAlive()) {
                 enemy2.moveToUse();
             }
         } else {
@@ -381,14 +381,14 @@ public class GameDriver {
                 return false;
             }
 
-            if (!enemy2.getIsDead()) {
+            if (enemy2.isAlive()) {
                 enemy2.moveToUse();
             }
             if (player.isDead() || (enemy1.isDead() && enemy2.isDead())) {
                 return false;
             }
 
-            if (!player.getIsDead()) {
+            if (player.isAlive()) {
                 player.moveToUse();
             }
         }
@@ -403,10 +403,10 @@ public class GameDriver {
         String target = input.nextLine();
         target = target.toLowerCase();
 
-        if (target.equals(enemy1.getName().toLowerCase()) && !enemy1.getIsDead()) {
+        if (target.equals(enemy1.getName().toLowerCase()) && enemy1.isAlive()) {
             player.setTarget(enemy1);
             return true;
-        } else if (target.equals(enemy2.getName().toLowerCase()) && !enemy2.getIsDead()) {
+        } else if (target.equals(enemy2.getName().toLowerCase()) && enemy2.isAlive()) {
             player.setTarget(enemy2);
             return true;
         } else {

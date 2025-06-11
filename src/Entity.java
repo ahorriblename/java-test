@@ -145,8 +145,8 @@ public class Entity {
         }
     }
 
-    boolean getIsDead() {
-        return this.isDead;
+    boolean isAlive() {
+        return !(this.isDead);
     }
 
     void setDamage(int damage) {
