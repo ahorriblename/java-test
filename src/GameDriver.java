@@ -40,11 +40,16 @@ public class GameDriver {
             playerBarb.setName(getPlayerName());
             playBarbarianRound1(playerBarb, defaultEnemy);
 
-            RogueWizard enemyWizard = new RogueWizard();
-            enemyWizard.setName("Hostile Wizard");
-
             if (!playerBarb.getIsDead()) {
-                playBarbarianRound2(playerBarb, enemyWizard);
+                RogueWizard enemyWizard = new RogueWizard();
+                enemyWizard.setName("Hostile Wizard");
+
+                Goblin weakGoblin = new Goblin(5, 5, 1, 2, 2, 1, "Weak Goblin", 0, 0, 0,
+                        playerBarb);
+
+                boolean targetChosen = false;
+
+                playBarbarianRound2(playerBarb, enemyWizard, weakGoblin, targetChosen);
             }
         }
     }
@@ -121,7 +126,7 @@ public class GameDriver {
             System.out.println("\nType stats to print out player and enemy statistics");
             Warrior.listMoves();
 
-            while(!targetChosen) {
+            while (!targetChosen) {
                 targetChosen = chooseTarget(playerWarrior, enemy1, enemy2);
             }
 
@@ -190,12 +195,19 @@ public class GameDriver {
         }
     }
 
-    static void playBarbarianRound2(Barbarian playerBarb, RogueWizard enemy1) {
+    static void playBarbarianRound2(Barbarian playerBarb, RogueWizard enemy1, Goblin enemy2,
+                                    boolean targetChosen) {
         System.out.println("You see a wizard (Hostile Wizard)");
+        System.out.println("You see a goblin (Weak Goblin)");
         enemy1.setTarget(playerBarb);
+        enemy2.setTarget(playerBarb);
 
-        while (!playerBarb.isDead() && !enemy1.isDead()) {
+        while (!playerBarb.isDead() && (!enemy1.isDead()) || !enemy2.isDead()) {
             Scanner input = new Scanner(System.in);
+
+            while (!targetChosen) {
+                targetChosen = chooseTarget(playerBarb, enemy1, enemy2);
+            }
 
             System.out.println("\nType stats to print out player and enemy statistics");
             Barbarian.listMoves();
@@ -210,9 +222,11 @@ public class GameDriver {
                 continue;
             }
 
-            if (!runMoves(playerBarb, enemy1)) {
+            if (!runMoves(playerBarb, enemy1, enemy2)) {
                 break;
             }
+
+            targetChosen = false;
 
             playerBarb.incrementTurn();
             enemy1.incrementTurn();
@@ -228,53 +242,19 @@ public class GameDriver {
             if (player.isDead() || enemy.isDead()) {
                 return false;
             }
-            enemy.moveToUse();
+
+            if (!enemy.getIsDead()) {
+                enemy.moveToUse();
+            }
         } else {
             enemy.moveToUse();
             if (player.isDead() || enemy.isDead()) {
                 return false;
             }
-            player.moveToUse();
-        }
 
-        return true;
-    }
-
-    static boolean runMoves(Barbarian player, Goblin enemy) {
-        enemy.getEnemyMove();
-
-        if (player.getSpeed() >= enemy.getSpeed()) {
-            player.moveToUse();
-            if (player.isDead() || enemy.isDead()) {
-                return false;
+            if(!player.getIsDead()) {
+                player.moveToUse();
             }
-            enemy.moveToUse();
-        } else {
-            enemy.moveToUse();
-            if (player.isDead() || enemy.isDead()) {
-                return false;
-            }
-            player.moveToUse();
-        }
-
-        return true;
-    }
-
-    static boolean runMoves(Barbarian player, RogueWizard enemy) {
-        enemy.getEnemyMove();
-
-        if (player.getSpeed() >= enemy.getSpeed()) {
-            player.moveToUse();
-            if (player.isDead() || enemy.isDead()) {
-                return false;
-            }
-            enemy.moveToUse();
-        } else {
-            enemy.moveToUse();
-            if (player.isDead() || enemy.isDead()) {
-                return false;
-            }
-            player.moveToUse();
         }
 
         return true;
@@ -291,24 +271,126 @@ public class GameDriver {
                 return false;
             }
 
-            enemy1.moveToUse();
+            if (!enemy1.getIsDead()) {
+                enemy1.moveToUse();
+            }
             if (player.isDead() || (enemy1.isDead() && enemy2.isDead())) {
                 return false;
             }
 
-            enemy2.moveToUse();
+            if(!enemy2.getIsDead()) {
+                enemy2.moveToUse();
+            }
         } else {
             enemy1.moveToUse();
             if (player.isDead() || (enemy1.isDead() && enemy2.isDead())) {
                 return false;
             }
 
-            enemy2.moveToUse();
+            if(!enemy2.getIsDead()) {
+                enemy2.moveToUse();
+            }
             if (player.isDead() || (enemy1.isDead() && enemy2.isDead())) {
                 return false;
             }
 
+            if(!player.getIsDead()) {
+                player.moveToUse();
+            }
+        }
+
+        return true;
+    }
+
+    static boolean runMoves(Barbarian player, Goblin enemy) {
+        enemy.getEnemyMove();
+
+        if (player.getSpeed() >= enemy.getSpeed()) {
             player.moveToUse();
+            if (player.isDead() || enemy.isDead()) {
+                return false;
+            }
+
+            if(!enemy.getIsDead()) {
+                enemy.moveToUse();
+            }
+        } else {
+            enemy.moveToUse();
+            if (player.isDead() || enemy.isDead()) {
+                return false;
+            }
+
+            if (!player.getIsDead()) {
+                player.moveToUse();
+            }
+        }
+
+        return true;
+    }
+
+    static boolean runMoves(Barbarian player, RogueWizard enemy) {
+        enemy.getEnemyMove();
+
+        if (player.getSpeed() >= enemy.getSpeed()) {
+            player.moveToUse();
+            if (player.isDead() || enemy.isDead()) {
+                return false;
+            }
+
+            if (!enemy.getIsDead()) {
+                enemy.moveToUse();
+            }
+        } else {
+            enemy.moveToUse();
+            if (player.isDead() || enemy.isDead()) {
+                return false;
+            }
+
+            if (!player.getIsDead()) {
+                player.moveToUse();
+            }
+        }
+
+        return true;
+    }
+
+    static boolean runMoves(Barbarian player, RogueWizard enemy1, Goblin enemy2) {
+        enemy1.getEnemyMove();
+        enemy2.getEnemyMove();
+
+        if (player.getSpeed() >= enemy1.getSpeed() && player.getSpeed()
+                >= enemy2.getSpeed()) {
+            player.moveToUse();
+            if (player.isDead() || (enemy1.isDead() && enemy2.isDead())) {
+                return false;
+            }
+
+            if(!enemy1.getIsDead()) {
+                enemy1.moveToUse();
+            }
+            if (player.isDead() || (enemy1.isDead() && enemy2.isDead())) {
+                return false;
+            }
+
+            if (!enemy2.getIsDead()) {
+                enemy2.moveToUse();
+            }
+        } else {
+            enemy1.moveToUse();
+            if (player.isDead() || (enemy1.isDead() && enemy2.isDead())) {
+                return false;
+            }
+
+            if (!enemy2.getIsDead()) {
+                enemy2.moveToUse();
+            }
+            if (player.isDead() || (enemy1.isDead() && enemy2.isDead())) {
+                return false;
+            }
+
+            if (!player.getIsDead()) {
+                player.moveToUse();
+            }
         }
 
         return true;
