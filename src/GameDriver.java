@@ -102,12 +102,17 @@ public class GameDriver {
             }
 
             if (!runMoves(playerWarrior, defaultEnemy)) {
+                announceStatus(playerWarrior);
+                announceStatus(defaultEnemy);
                 break;
             }
 
             playerWarrior.incrementTurn();
             defaultEnemy.incrementTurn();
             System.out.println("\nIt's turn " + playerWarrior.getTurn());
+
+            announceStatus(playerWarrior);
+            announceStatus(defaultEnemy);
         }
     }
 
@@ -118,17 +123,16 @@ public class GameDriver {
 
         enemy1.setTarget(playerWarrior);
         enemy2.setTarget(playerWarrior);
-        playerWarrior.setTarget(enemy1);
 
         while (!playerWarrior.isDead() && (!enemy1.isDead()) || !enemy2.isDead()) {
             Scanner input = new Scanner(System.in);
 
-            System.out.println("\nType stats to print out player and enemy statistics");
-            Warrior.listMoves();
-
             while (!targetChosen) {
                 targetChosen = chooseTarget(playerWarrior, enemy1, enemy2);
             }
+
+            System.out.println("\nType stats to print out player and enemy statistics");
+            Warrior.listMoves();
 
             System.out.print("Pick your move: ");
             String move = input.nextLine();
@@ -142,14 +146,21 @@ public class GameDriver {
 
             if (enemy1.isDead()) {
                 if (!runMoves(playerWarrior, enemy2)) {
+                    announceStatus(playerWarrior);
+                    announceStatus(enemy2);
                     break;
                 }
             } else if (enemy2.isDead()) {
                 if (!runMoves(playerWarrior, enemy1)) {
+                    announceStatus(playerWarrior);
+                    announceStatus(enemy1);
                     break;
                 }
             } else {
                 if (!runMoves(playerWarrior, enemy1, enemy2)) {
+                    announceStatus(playerWarrior);
+                    announceStatus(enemy1);
+                    announceStatus(enemy2);
                     break;
                 }
             }
@@ -160,6 +171,10 @@ public class GameDriver {
             enemy1.incrementTurn();
             enemy2.incrementTurn();
             System.out.println("\nIt's turn " + playerWarrior.getTurn());
+
+            announceStatus(playerWarrior);
+            announceStatus(enemy1);
+            announceStatus(enemy2);
         }
     }
 
@@ -186,12 +201,17 @@ public class GameDriver {
             }
 
             if (!runMoves(playerBarb, defaultEnemy)) {
+                announceStatus(playerBarb);
+                announceStatus(defaultEnemy);
                 break;
             }
 
             playerBarb.incrementTurn();
             defaultEnemy.incrementTurn();
             System.out.println("\nIt's turn " + playerBarb.getTurn());
+
+            announceStatus(playerBarb);
+            announceStatus(defaultEnemy);
         }
     }
 
@@ -199,6 +219,7 @@ public class GameDriver {
                                     boolean targetChosen) {
         System.out.println("You see a wizard (Hostile Wizard)");
         System.out.println("You see a goblin (Weak Goblin)");
+
         enemy1.setTarget(playerBarb);
         enemy2.setTarget(playerBarb);
 
@@ -222,15 +243,37 @@ public class GameDriver {
                 continue;
             }
 
-            if (!runMoves(playerBarb, enemy1, enemy2)) {
-                break;
+            if (enemy1.isDead()) {
+                if (!runMoves(playerBarb, enemy2)) {
+                    announceStatus(playerBarb);
+                    announceStatus(enemy2);
+                    break;
+                }
+            } else if (enemy2.isDead()) {
+                if (!runMoves(playerBarb, enemy1)) {
+                    announceStatus(playerBarb);
+                    announceStatus(enemy1);
+                    break;
+                }
+            } else {
+                if (!runMoves(playerBarb, enemy1, enemy2)) {
+                    announceStatus(playerBarb);
+                    announceStatus(enemy1);
+                    announceStatus(enemy2);
+                    break;
+                }
             }
 
             targetChosen = false;
 
             playerBarb.incrementTurn();
             enemy1.incrementTurn();
+            enemy2.incrementTurn();
             System.out.println("\nIt's turn " + playerBarb.getTurn());
+
+            announceStatus(playerBarb);
+            announceStatus(enemy1);
+            announceStatus(enemy2);
         }
     }
 
@@ -412,10 +455,18 @@ public class GameDriver {
         } else {
             System.out.println("Invalid target");
             // to announce what is dead
-            enemy1.isDead();
-            enemy2.isDead();
+            announceStatus(enemy1);
+            announceStatus(enemy2);
 
             return false;
+        }
+    }
+
+    static void announceStatus(Entity entity) {
+        if(entity.isDead()) {
+            System.out.println(Color.ANSI_RED + entity.getName() + " is dead!" + Color.ANSI_RESET);
+        } else {
+            System.out.println(Color.ANSI_GREEN + entity.getName() + " is alive!" + Color.ANSI_RESET);
         }
     }
 }

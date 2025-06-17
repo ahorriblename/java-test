@@ -137,7 +137,6 @@ public class Entity {
     boolean isDead() {
         if (this.health <= 0) {
             this.isDead = true;
-            System.out.println(this.name + " is dead!");
             return true;
         } else {
             this.isDead = false;
